@@ -1,10 +1,10 @@
 from extras.plugins import PluginConfig
 
-class NetBoxAccessListsConfig(PluginConfig):
-    name = 'netbox_access_lists'
-    verbose_name = ' NetBox Access Lists'
-    description = 'Manage simple ACLs in NetBox'
+class NetBoxFibersInventoryConfig(PluginConfig):
+    name = 'netbox_inventory_fibers'
+    verbose_name = ' Netbox Fibers Inventory'
+    description = 'Manage optical fibers inventory'
     version = '0.1'
-    base_url = 'access-lists'
+    base_url = 'fibers-inventory'
 
-config = NetBoxAccessListsConfig
+config = NetBoxFibersInventoryConfig

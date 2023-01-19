@@ -1,3 +1,3 @@
 ## netbox-inventory-fibers
 
-Manage inventory optical fibers in NetBox
+Manage optical fibers inventory in NetBox
