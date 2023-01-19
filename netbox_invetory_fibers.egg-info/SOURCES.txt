@@ -1,8 +1,0 @@
-README.md
-setup.py
-netbox_invetory_fibers/__init__.py
-netbox_invetory_fibers.egg-info/PKG-INFO
-netbox_invetory_fibers.egg-info/SOURCES.txt
-netbox_invetory_fibers.egg-info/dependency_links.txt
-netbox_invetory_fibers.egg-info/not-zip-safe
-netbox_invetory_fibers.egg-info/top_level.txt
