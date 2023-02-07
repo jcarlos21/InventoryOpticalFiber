@@ -1,0 +1,8 @@
+README.md
+setup.py
+netbox_inventory_fibers/__init__.py
+netbox_inventory_fibers.egg-info/PKG-INFO
+netbox_inventory_fibers.egg-info/SOURCES.txt
+netbox_inventory_fibers.egg-info/dependency_links.txt
+netbox_inventory_fibers.egg-info/not-zip-safe
+netbox_inventory_fibers.egg-info/top_level.txt
