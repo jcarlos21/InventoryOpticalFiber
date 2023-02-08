@@ -8,7 +8,7 @@ class BobinaTable(NetBoxTable):
             linkify=True
         )
     descricao = ChoiceFieldColumn()
-    
+
     class Meta(NetBoxTable.Meta):
         model = Bobina
         fields = ('pk', 'id', 'codBobina', 'codBobinaAno', 'quantidadeFibras', 'descricao', 'actions')

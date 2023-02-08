@@ -41,7 +41,7 @@ class StatusChoices(ChoiceSet):
 
 class Bobina(NetBoxModel):
     codBobina = models.BigAutoField(primary_key=True)
-    codBobinaAno = models.CharField(max_length=9)
+    codBobina = models.CharField(max_length=9)
     quantidadeFibras = models.IntegerField()
     descricao = models.CharField(max_length=50)
     # statusBobina = models.CharField(max_length=30)
