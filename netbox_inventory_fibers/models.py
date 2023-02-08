@@ -30,7 +30,7 @@ from django.conf import settings
 class Bobina(NetBoxModel):
     codBobina = models.BigAutoField(primary_key=True)
     codBobinaAno = models.CharField(max_length=9)
-    quantidadeFibras = models.PositiveIntegerField(max_length=2)
+    quantidadeFibras = models.IntegerField()
     descricao = models.CharField(max_length=50)
     # TipoBobina = models.ForeignKey(
     #     to=TipoBobina,
