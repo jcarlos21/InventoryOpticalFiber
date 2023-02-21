@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='netbox_inventory_fibers',
+    name='netbox-inventory-fibers',
     version='0.1',
     description='Fibers inventory',
     install_requires=[],
