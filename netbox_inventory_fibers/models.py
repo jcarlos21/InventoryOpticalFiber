@@ -25,7 +25,7 @@ class TipoBobina(NetBoxModel):
 
     class Meta:
         ordering = ('id',)
-    
+
     def __str__(self):
         return self.id
 
@@ -43,10 +43,10 @@ class Bobina(NetBoxModel):
 
     class Meta:
         ordering = ('id',)
-    
+
     def __str__(self):
         return self.id
-    
+
     def restante(self):
         self.total_metragem = self.metragem_final - self.metragem_inicial
 
@@ -56,6 +56,12 @@ class Requisicao(NetBoxModel):
     metragem_requisitada = models.FloatField()
     data_requisicao = models.DateField(auto_now=True)
     bilhete_associado = models.CharField(max_length=15)
+    
+    class Meta:
+        ordering = ('id',)
+    
+    def __str__(self):
+        return self.id
 
 
 class FibraRequisitada(NetBoxModel):
@@ -63,3 +69,9 @@ class FibraRequisitada(NetBoxModel):
     requisicao = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT)
     # file will be uploaded to MEDIA_ROOT/uploads
     imagem_corte_cabo = models.FileField(upload_to='uploads/')
+
+    class Meta:
+        ordering = ('id',)
+    
+    def __str__(self):
+        return self.id
