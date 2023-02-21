@@ -19,6 +19,7 @@ class Fornecedor(NetBoxModel):
     def __str__(self):
         return self.nome_fornecedor
 
+
 class TipoBobina(NetBoxModel):
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     descricao = models.CharField(max_length=20)
@@ -54,9 +55,9 @@ class Bobina(NetBoxModel):
 class Requisicao(NetBoxModel):
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     metragem_requisitada = models.FloatField()
-    data_requisicao = models.DateField(auto_now=True)
+    # data_requisicao = models.DateField(auto_now=True)  Não necessário, pois o atribuito 'created' já é criado por padrão
     bilhete_associado = models.CharField(max_length=15)
-    
+
     class Meta:
         ordering = ('id',)
     
