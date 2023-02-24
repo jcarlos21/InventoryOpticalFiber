@@ -7,7 +7,7 @@ User=get_user_model()
 
 
 class Fornecedor(NetBoxModel):
-    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    # author = models.ForeignKey(User, on_delete=models.PROTECT)
     nome_fornecedor = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
     telefone = models.PositiveIntegerField()
@@ -21,7 +21,7 @@ class Fornecedor(NetBoxModel):
 
 
 class TipoBobina(NetBoxModel):
-    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    # author = models.ForeignKey(User, on_delete=models.PROTECT)
     descricao = models.CharField(max_length=20)
 
     class Meta:
@@ -32,7 +32,7 @@ class TipoBobina(NetBoxModel):
 
 
 class Bobina(NetBoxModel):
-    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    # author = models.ForeignKey(User, on_delete=models.PROTECT)
     nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT)
     quantidade_fibras = models.IntegerField()
     descricao = models.CharField(max_length=60)
@@ -44,6 +44,7 @@ class Bobina(NetBoxModel):
 
     class Meta:
         ordering = ('id',)
+        verbose_name = 'Bobinas'
 
     def __str__(self):
         return self.id
@@ -53,7 +54,7 @@ class Bobina(NetBoxModel):
 
 
 class Requisicao(NetBoxModel):
-    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    # author = models.ForeignKey(User, on_delete=models.PROTECT)
     metragem_requisitada = models.FloatField()
     # data_requisicao = models.DateField(auto_now=True)  Não necessário, pois o atribuito 'created' já é criado por padrão
     bilhete_associado = models.CharField(max_length=15)
