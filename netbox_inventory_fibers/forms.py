@@ -8,7 +8,7 @@ class FornecedorForm(NetBoxModelForm):
         fields = ('nome_fornecedor', 'email', 'telefone', 'endereco_site')
 
 
-class TipoBobina(NetBoxModelForm):
+class TipoBobinaForm(NetBoxModelForm):
     class Meta:
         model = TipoBobina
         fields = ('descricao')
@@ -20,3 +20,10 @@ class BobinaForm(NetBoxModelForm):
         fields = ('descricao', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final')
 
 
+class RequisicaoForm(NetBoxModelForm):
+    class Meta:
+        model = Requisicao
+        fields = ('bilhete_associado')
+
+
+# Tem que fazer uma classe para 'FibraRequisitada'
