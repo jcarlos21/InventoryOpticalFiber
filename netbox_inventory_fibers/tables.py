@@ -51,4 +51,5 @@ class RequisicaoTable(NetBoxTable):
     )
     class Meta(NetBoxTable.Meta):
         model = Requisicao
-        fields = ('pk', 'id', 'bilhete_associado',  'tags', 'created', 'last_updated')
+        fields = ('pk', 'id', 'bilhete_associado', 'tags', 'created', 'last_updated')
+        default_columns = ('id', 'bilhete_associado')
