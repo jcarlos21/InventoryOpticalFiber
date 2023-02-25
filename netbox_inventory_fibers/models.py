@@ -55,7 +55,7 @@ class Bobina(NetBoxModel):
 
 class Requisicao(NetBoxModel):
     # author = models.ForeignKey(User, on_delete=models.PROTECT)
-    metragem_requisitada = models.FloatField()
+    # metragem_requisitada = models.FloatField()
     # data_requisicao = models.DateField(auto_now=True)  Não necessário, pois o atribuito 'created' já é criado por padrão
     bilhete_associado = models.CharField(max_length=15)
 
@@ -68,9 +68,10 @@ class Requisicao(NetBoxModel):
 
 class FibraRequisitada(NetBoxModel):
     bobina = models.ForeignKey(to=Bobina, on_delete=models.PROTECT)
-    requisicao = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT)
+    metragem_requisitada = models.FloatField()
     # file will be uploaded to MEDIA_ROOT/uploads
     imagem_corte_cabo = models.FileField(upload_to='uploads/')
+    requisicao = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT)
 
     class Meta:
         ordering = ('id',)
