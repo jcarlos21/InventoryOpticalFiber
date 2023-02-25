@@ -26,4 +26,4 @@ class RequisicaoForm(NetBoxModelForm):
         fields = ('bilhete_associado')
 
 
-# Tem que fazer uma classe para 'FibraRequisitada'
+# Tem que fazer uma classe para 'FibraRequisitada'. Veja em: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step04-forms.md#accesslistruleform

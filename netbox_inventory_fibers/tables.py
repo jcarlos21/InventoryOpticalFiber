@@ -56,4 +56,4 @@ class RequisicaoTable(NetBoxTable):
         default_columns = ('id', 'bilhete_associado')
 
 
-# Tem que fazer uma classe para 'FibraRequisitada'
+# Tem que fazer uma classe para 'FibraRequisitada'. Veja se dá para aproveitar algo em: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step04-forms.md#accesslistruleform
