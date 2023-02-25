@@ -42,7 +42,7 @@ class BobinaTable(NetBoxTable):
     class Meta(NetBoxTable.Meta):
         model = Bobina
         fields = ('pk', 'id', 'descricao', 'quantidade_fibras', 'lote_cabo', 'tags', 'created', 'last_updated')
-        default_columns = ('id', 'descricao', 'quantidade_fibras', 'lote_cabo')
+        default_columns = ('id', 'descricao', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final', 'total_metragem')
 
 
 class RequisicaoTable(NetBoxTable):

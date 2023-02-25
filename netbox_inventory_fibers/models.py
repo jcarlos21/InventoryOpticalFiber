@@ -41,6 +41,7 @@ class Bobina(NetBoxModel):
     metragem_inicial = models.FloatField()
     metragem_final = models.FloatField()
     total_metragem = models.FloatField()
+    # Lembrar de por o atributo 'total_estoque'
 
     class Meta:
         ordering = ('id',)
