@@ -33,3 +33,13 @@ class TipoBobinaTable(NetBoxTable):
         model = TipoBobina
         fields = ('pk', 'id', 'descricao', 'tags', 'created', 'last_updated')
         default_columns = ('pk', 'descricao')
+
+
+class BobinaTable(NetBoxTable):
+    id = tables.Column(
+        linkify=True
+    )
+    class Meta(NetBoxTable.Meta):
+        model = Bobina
+        fields = ('pk', 'id', 'descricao', 'quantidade_fibras', 'lote_cabo', 'tags', 'created', 'last_updated')
+        default_columns = ('id', 'descricao', 'quantidade_fibras', 'lote_cabo')
