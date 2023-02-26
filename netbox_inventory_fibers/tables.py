@@ -29,10 +29,11 @@ class TipoBobinaTable(NetBoxTable):
     #     url_params={'group_id': 'pk'},
     #     verbose_name='Bobinas'
     # )
+    bobina_count = tables.Column()
     class Meta(NetBoxTable.Meta):
         model = TipoBobina
-        fields = ('pk', 'id', 'descricao', 'tags', 'created', 'last_updated')
-        default_columns = ('pk', 'descricao')
+        fields = ('pk', 'id', 'descricao', 'bobina_count', 'tags', 'created', 'last_updated')
+        default_columns = ('pk', 'descricao', 'bobina_count')
 
 
 class BobinaTable(NetBoxTable):
