@@ -57,16 +57,16 @@ class BobinaDeleteView(generic.ObjectEditView):
     queryset = models.Bobina.objects.all()
 
 # Requisicao:
-class BobinaView(generic.ObjectView):
-    queryset = models.Bobina.objects.all()
+class RequisicaoView(generic.ObjectView):
+    queryset = models.Requisicao.objects.all()
 
-class BobinaListView(generic.ObjectListView):
-    queryset = models.Bobina.objects.all()
-    table = tables.BobinaTable
+class RequisicaoListView(generic.ObjectListView):
+    queryset = models.Requisicao.objects.all()
+    table = tables.RequisicaoTable
 
-class BobinaEditView(generic.ObjectEditView):
-    queryset = models.Bobina.objects.all()
-    form = forms.BobinaForm
+class RequisicaoEditView(generic.ObjectEditView):
+    queryset = models.Requisicao.objects.all()
+    form = forms.RequisicaoForm
 
-class BobinaDeleteView(generic.ObjectEditView):
-    queryset = models.Bobina.objects.all()
+class RequisicaoDeleteView(generic.ObjectEditView):
+    queryset = models.Requisicao.objects.all()
