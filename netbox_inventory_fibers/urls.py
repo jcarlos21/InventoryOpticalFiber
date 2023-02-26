@@ -24,6 +24,7 @@ urlpatterns = (
     path('tipo-bobina/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='tipobobina_changelog', kwargs={
         'model': models.TipoBobina
     }),
+    # path('tipo-bobina/<int:pk>/', include(get_model_urls('tipobobina', 'tipobobina'))),
     
     # Bobina
     path('bobina/', views.BobinaListView.as_view(), name='bobina_list'),
