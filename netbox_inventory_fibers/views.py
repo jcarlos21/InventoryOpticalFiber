@@ -29,7 +29,7 @@ class TipoBobinaView(generic.ObjectView):
 
 class TipoBobinaListView(generic.ObjectListView):
     queryset = models.TipoBobina.objects.annotate(
-        bobina_count=Count('bobinas')  # aparece na model 'Bobina', em "related_name='bobinas'"
+        bobina_count=Count('bobinas')  # deve ser igual ao que aparece na model 'Bobina', em "related_name='bobinas'"
     )
     table = tables.TipoBobinaTable
 
