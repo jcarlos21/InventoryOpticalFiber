@@ -16,7 +16,7 @@ class Fornecedor(NetBoxModel):
     endereco_site = models.CharField(max_length=60)
     class Meta:
         ordering = ('nome_fornecedor',)
-        verbose_name = 'Fornecedore'
+        verbose_name = 'Fornecedor'
     def __str__(self):
         return self.nome_fornecedor
     def get_absolute_url(self):
@@ -63,7 +63,7 @@ class Requisicao(NetBoxModel):
     bilhete_associado = models.CharField(max_length=15)
     class Meta:
         ordering = ('id',)
-        verbose_name = 'Requisiçõe'
+        verbose_name = 'Requisições'
     def __str__(self):
         return self.id
     def get_absolute_url(self):
