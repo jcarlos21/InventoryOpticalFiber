@@ -40,7 +40,7 @@ class TipoBobinaEditView(generic.ObjectEditView):
 class TipoBobinaDeleteView(generic.ObjectEditView):
     queryset = models.TipoBobina.objects.all()
 
-# Bobina
+# Bobina:
 
 class BobinaView(generic.ObjectView):
     queryset = models.Bobina.objects.all()
@@ -56,8 +56,7 @@ class BobinaEditView(generic.ObjectEditView):
 class BobinaDeleteView(generic.ObjectEditView):
     queryset = models.Bobina.objects.all()
 
-# Requisicao
-
+# Requisicao:
 class BobinaView(generic.ObjectView):
     queryset = models.Bobina.objects.all()
 
