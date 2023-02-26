@@ -1,6 +1,6 @@
 from netbox.views import generic
 from . import forms, models, tables
-
+from django.db.models import Count
 
 # Fornecedor:
 
@@ -28,7 +28,9 @@ class TipoBobinaView(generic.ObjectView):
     queryset = models.TipoBobina.objects.all()
 
 class TipoBobinaListView(generic.ObjectListView):
-    queryset = models.TipoBobina.objects.all()
+    queryset = models.TipoBobina.objects.annotate(
+        bobina_count=Count('bobinas')
+    )
     table = tables.TipoBobinaTable
 
 class TipoBobinaEditView(generic.ObjectEditView):
