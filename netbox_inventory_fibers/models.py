@@ -28,7 +28,7 @@ class TipoBobina(NetBoxModel):
     class Meta:
         ordering = ('id',)
     def __str__(self):
-        return self.id
+        return self.descricao
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:tipobobina', args=[self.pk])
 
