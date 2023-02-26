@@ -2,8 +2,10 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from netbox.models import NetBoxModel
 
-from django.contrib.auth import get_user_model
-User=get_user_model()
+from django.urls import reverse
+
+# from django.contrib.auth import get_user_model
+# User=get_user_model()
 
 
 class Fornecedor(NetBoxModel):
@@ -16,6 +18,8 @@ class Fornecedor(NetBoxModel):
         ordering = ('nome_fornecedor',)
     def __str__(self):
         return self.nome_fornecedor
+    def get_absolute_url(self):
+        return reverse('plugins:netbox_inventory_fibers:fornecedor', args=[self.pk])
 
 
 class TipoBobina(NetBoxModel):
@@ -25,6 +29,8 @@ class TipoBobina(NetBoxModel):
         ordering = ('id',)
     def __str__(self):
         return self.id
+    def get_absolute_url(self):
+        return reverse('plugins:netbox_inventory_fibers:tipobobina', args=[self.pk])
 
 
 class Bobina(NetBoxModel):
@@ -46,6 +52,8 @@ class Bobina(NetBoxModel):
     def restante(self):
         self.total_metragem = self.metragem_final - self.metragem_inicial
         # self.total_estoque = self.total_metragem
+    def get_absolute_url(self):
+        return reverse('plugins:netbox_inventory_fibers:bobina', args=[self.pk])
 
 
 class Requisicao(NetBoxModel):
@@ -55,6 +63,8 @@ class Requisicao(NetBoxModel):
         ordering = ('id',)
     def __str__(self):
         return self.id
+    def get_absolute_url(self):
+        return reverse('plugins:netbox_inventory_fibers:requisicao', args=[self.pk])
 
 
 class FibraRequisitada(NetBoxModel):
