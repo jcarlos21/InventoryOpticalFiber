@@ -12,10 +12,8 @@ class Fornecedor(NetBoxModel):
     email = models.EmailField(max_length=254)
     telefone = models.PositiveIntegerField()
     endereco_site = models.CharField(max_length=60)
-    
     class Meta:
         ordering = ('nome_fornecedor',)
-    
     def __str__(self):
         return self.nome_fornecedor
 
@@ -23,10 +21,8 @@ class Fornecedor(NetBoxModel):
 class TipoBobina(NetBoxModel):
     # author = models.ForeignKey(User, on_delete=models.PROTECT)
     descricao = models.CharField(max_length=20)
-
     class Meta:
         ordering = ('id',)
-
     def __str__(self):
         return self.id
 
@@ -41,28 +37,22 @@ class Bobina(NetBoxModel):
     metragem_inicial = models.FloatField()
     metragem_final = models.FloatField()
     total_metragem = models.FloatField()
-    # Lembrar de por o atributo 'total_estoque'
-
+    total_estoque = models.FloatField()
     class Meta:
         ordering = ('id',)
         verbose_name = 'Bobinas'
-
     def __str__(self):
         return self.id
-
     def restante(self):
         self.total_metragem = self.metragem_final - self.metragem_inicial
+        self.total_estoque = self.total_metragem
 
 
 class Requisicao(NetBoxModel):
     # author = models.ForeignKey(User, on_delete=models.PROTECT)
-    # metragem_requisitada = models.FloatField()
-    # data_requisicao = models.DateField(auto_now=True)  Não necessário, pois o atribuito 'created' já é criado por padrão
     bilhete_associado = models.CharField(max_length=15)
-
     class Meta:
         ordering = ('id',)
-    
     def __str__(self):
         return self.id
 
@@ -72,10 +62,8 @@ class FibraRequisitada(NetBoxModel):
     metragem_requisitada = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
     # file will be uploaded to MEDIA_ROOT/uploads
     imagem_corte_cabo = models.FileField(upload_to='uploads/')
-    requisicao = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT)
-
+    id_requisicao = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT)
     class Meta:
         ordering = ('id',)
-    
     def __str__(self):
         return self.id
