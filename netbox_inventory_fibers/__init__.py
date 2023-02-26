@@ -7,6 +7,6 @@ class NetBoxFibersInventoryConfig(PluginConfig):
     version = '0.1'
     author = 'José Carlos dos Santos'
     author_email = 'j.carlos2020@live.com'
-    base_url = 'fibers-inventory'    
+    base_url = 'fibers-inventory'  # será usado no caminho do plugin. Ex: http://127.0.0.1:8001/plugins/fibers-inventory/requisicao/
 
 config = NetBoxFibersInventoryConfig

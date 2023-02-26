@@ -16,6 +16,7 @@ class Fornecedor(NetBoxModel):
     endereco_site = models.CharField(max_length=60)
     class Meta:
         ordering = ('nome_fornecedor',)
+        verbose_name = 'Fornecedore'
     def __str__(self):
         return self.nome_fornecedor
     def get_absolute_url(self):
@@ -27,6 +28,7 @@ class TipoBobina(NetBoxModel):
     descricao = models.CharField(max_length=20)
     class Meta:
         ordering = ('id',)
+        verbose_name = 'Tipos de Bobina'
     def __str__(self):
         return self.descricao
     def get_absolute_url(self):
@@ -46,7 +48,7 @@ class Bobina(NetBoxModel):
     total_estoque = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
     class Meta:
         ordering = ('id',)
-        verbose_name = 'Bobinas'
+        verbose_name = 'Bobina'
     def __str__(self):
         return self.id
     def restante(self):
@@ -61,6 +63,7 @@ class Requisicao(NetBoxModel):
     bilhete_associado = models.CharField(max_length=15)
     class Meta:
         ordering = ('id',)
+        verbose_name = 'Requisiçõe'
     def __str__(self):
         return self.id
     def get_absolute_url(self):
