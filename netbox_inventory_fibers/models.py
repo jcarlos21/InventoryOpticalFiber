@@ -45,7 +45,7 @@ class Bobina(NetBoxModel):
         return self.id
     def restante(self):
         self.total_metragem = self.metragem_final - self.metragem_inicial
-        # self.total_estoque = float(self.total_metragem)
+        # self.total_estoque = self.total_metragem
 
 
 class Requisicao(NetBoxModel):
