@@ -32,7 +32,7 @@ class Bobina(NetBoxModel):
     nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT)
     quantidade_fibras = models.IntegerField()
     descricao = models.CharField(max_length=60)
-    tipo_bobina = models.ForeignKey(to=TipoBobina, on_delete=models.PROTECT)
+    tipo_bobina = models.ForeignKey(to=TipoBobina, on_delete=models.PROTECT, related_name='bobinas')
     lote_cabo = models.CharField(max_length=50)
     metragem_inicial = models.FloatField()
     metragem_final = models.FloatField()

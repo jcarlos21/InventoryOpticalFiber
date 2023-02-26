@@ -11,7 +11,7 @@ class FornecedorForm(NetBoxModelForm):
 class TipoBobinaForm(NetBoxModelForm):
     class Meta:
         model = TipoBobina
-        fields = ('descricao')
+        fields = ('descricao',)
 
 
 class BobinaForm(NetBoxModelForm):
@@ -23,6 +23,6 @@ class BobinaForm(NetBoxModelForm):
 class RequisicaoForm(NetBoxModelForm):
     class Meta:
         model = Requisicao
-        fields = ('bilhete_associado')
+        fields = ('bilhete_associado',)
 
 # Tem que fazer uma classe para 'FibraRequisitada'. Veja em: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step04-forms.md#accesslistruleform
