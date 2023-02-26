@@ -37,7 +37,7 @@ class Bobina(NetBoxModel):
     metragem_inicial = models.FloatField()
     metragem_final = models.FloatField()
     total_metragem = models.FloatField()
-    total_estoque = models.FloatField()
+    # total_estoque = models.FloatField(default=0.0)  # Foi necessáro colocar o default para a migration ser concluida.
     class Meta:
         ordering = ('id',)
         verbose_name = 'Bobinas'
@@ -45,7 +45,7 @@ class Bobina(NetBoxModel):
         return self.id
     def restante(self):
         self.total_metragem = self.metragem_final - self.metragem_inicial
-        self.total_estoque = self.total_metragem
+        # self.total_estoque = float(self.total_metragem)
 
 
 class Requisicao(NetBoxModel):
@@ -59,7 +59,7 @@ class Requisicao(NetBoxModel):
 
 class FibraRequisitada(NetBoxModel):
     bobina = models.ForeignKey(to=Bobina, on_delete=models.PROTECT)
-    metragem_requisitada = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
+    metragem_requisitada = models.FloatField(default=0.0)  # Foi necessáro colocar o default para a migration ser concluida.
     # file will be uploaded to MEDIA_ROOT/uploads
     imagem_corte_cabo = models.FileField(upload_to='uploads/')
     id_requisicao = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT)
