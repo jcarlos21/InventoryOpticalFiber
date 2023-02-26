@@ -1,0 +1,36 @@
+{% extends 'generic/object.html' %}
+
+{% block content %}
+  <div class="row mb-3">
+    <div class="col col-md-6">
+      <div class="card">
+        <h5 class="card-header">Fornecedores de Fibra Óptica</h5>
+        <div class="card-body">
+          <table class="table table-hover attr-table">
+            <tr>
+              <th scope="row">Name</th>
+              <td>{{ object.nome_fornecedor }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Email</th>
+              <td>{{ object.email }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Telefone</th>
+              <td>{{ object.telefone }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Site</th>
+                <td>{{ object.endereco_site }}</td>
+              </tr>
+          </table>
+        </div>
+      </div>
+      {% include 'inc/panels/custom_fields.html' %}
+    </div>
+    <div class="col col-md-6">
+      {% include 'inc/panels/tags.html' %}
+      {% include 'inc/panels/comments.html' %}
+    </div>
+  </div>
+{% endblock content %}
