@@ -23,53 +23,37 @@
         </div>
       </div>
       {% include 'inc/panels/custom_fields.html' %}
-    </div>
-    <div class="col col-md-6">
       {% include 'inc/panels/tags.html' %}
-      {% include 'inc/panels/comments.html' %}
     </div>
-    
     <!--Detalhes começa aqui-->
     <div class="col col-md-6">
         <div class="card">
-          <h5 class="card-header">Details</h5>
+          <h5 class="card-header">Detalhes</h5>
           <div class="card-body">
             <table class="table table-hover attr-table">
               <tr>
-                <th scope="row">Protocol</th>
-                <td>{{ object.get_protocol_display }}</td>
+                <th scope="row">Fornecedor</th>
+                <td>{{ object.nome_fornecedor }}</td>
               </tr>
               <tr>
-                <th scope="row">Source Prefix</th>
-                <td>
-                  {% if object.source_prefix %}
-                    <a href="{{ object.source_prefix.get_absolute_url }}">{{ object.source_prefix }}</a>
-                  {% else %}
-                    {{ ''|placeholder }}
-                  {% endif %}
-                </td>
+                <th scope="row">Lote</th>
+                <td>{{object.lote_cabo }}</td>
               </tr>
               <tr>
-                <th scope="row">Source Ports</th>
-                <td>{{ object.source_ports|join:", "|placeholder }}</td>
+                <th scope="row">Status da Bobina</th>
+                <td>{{object.tipo_bobina }}</td>
               </tr>
               <tr>
-                <th scope="row">Destination Prefix</th>
-                <td>
-                  {% if object.destination_prefix %}
-                    <a href="{{ object.destination_prefix.get_absolute_url }}">{{ object.destination_prefix }}</a>
-                  {% else %}
-                    {{ ''|placeholder }}
-                  {% endif %}
-                </td>
+                <th scope="row">Metragem Inicial/th>
+                <td>{{object.metragem_inicial }}</td>
               </tr>
               <tr>
-                <th scope="row">Destination Ports</th>
-                <td>{{ object.destination_ports|join:", "|placeholder }}</td>
+                <th scope="row">Metragem Final/th>
+                <td>{{object.metragem_final }}</td>
               </tr>
               <tr>
-                <th scope="row">Action</th>
-                <td>{{ object.get_action_display }}</td>
+                <th scope="row">Total Disponível/th>
+                <td>{{object.total_estoque }}</td>
               </tr>
             </table>
           </div>
