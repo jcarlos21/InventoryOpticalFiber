@@ -17,7 +17,7 @@ class FornecedorTable(NetBoxTable):
     class Meta(NetBoxTable.Meta):
         model = Fornecedor
         # 225343 o 'fields' torna as opções disponíveis em 'configure table'
-        fields = ('pk', 'id', 'nome_fornecedor', 'email', 'telefone', 'endereco_site', 'comments', 'tags', 'created', 'last_updated')
+        fields = ('pk', 'id', 'nome_fornecedor', 'email', 'telefone', 'endereco_site', 'bobina_fornecedor_count', 'comments', 'tags', 'created', 'last_updated')
         default_columns = ('pk', 'nome_fornecedor', 'telefone', 'endereco_site', 'bobina_fornecedor_count')
 
 
