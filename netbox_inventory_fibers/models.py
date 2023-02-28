@@ -14,6 +14,7 @@ class Fornecedor(NetBoxModel):
     email = models.EmailField(max_length=254)
     telefone = models.PositiveIntegerField()
     endereco_site = models.CharField(max_length=60)
+    comments = models.TextField(blank=True)
     class Meta:
         ordering = ('nome_fornecedor',)
         verbose_name = 'Fornecedor'
@@ -26,6 +27,7 @@ class Fornecedor(NetBoxModel):
 class TipoBobina(NetBoxModel):
     # author = models.ForeignKey(User, on_delete=models.PROTECT)
     descricao = models.CharField(max_length=20)
+    comments = models.TextField(blank=True)
     class Meta:
         ordering = ('id',)
         verbose_name = 'Tipos de Bobina'

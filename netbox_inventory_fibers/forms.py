@@ -7,14 +7,14 @@ class FornecedorForm(NetBoxModelForm):
     comments = CommentField()
     class Meta:
         model = Fornecedor
-        fields = ('nome_fornecedor', 'email', 'telefone', 'endereco_site')
+        fields = ('nome_fornecedor', 'email', 'telefone', 'endereco_site', 'comments')
 
 
 class TipoBobinaForm(NetBoxModelForm):
     comments = CommentField()
     class Meta:
         model = TipoBobina
-        fields = ('descricao',)
+        fields = ('descricao', 'comments')
 
 
 class BobinaForm(NetBoxModelForm):
