@@ -10,7 +10,9 @@ class FornecedorView(generic.ObjectView):
 
 # List view (Exibição de lista)
 class FornecedorListView(generic.ObjectListView):
-    queryset = models.Fornecedor.objects.all()
+    queryset = models.Fornecedor.objects.annotate(
+        bobina_fornecedor_count=Count('bobinas_to_fornecedor')
+    )
     table = tables.FornecedorTable
 
 # Edit view (Exibição de edição)

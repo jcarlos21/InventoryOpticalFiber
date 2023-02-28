@@ -23,6 +23,10 @@
               <th scope="row">Site</th>
               <td>{{ object.endereco_site }}</td>
             </tr>
+            <tr>
+              <th scope="row">Bobinas Associadas</th>
+              <td>{{ object.bobinas_to_fornecedor.count }}</td>
+            </tr>
           </table>
         </div>
       </div>
