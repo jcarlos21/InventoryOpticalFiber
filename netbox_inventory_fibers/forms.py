@@ -1,14 +1,17 @@
 from netbox.forms import NetBoxModelForm
 from .models import Fornecedor, TipoBobina, Bobina, Requisicao
+from utilities.forms.fields import CommentField
 
 
 class FornecedorForm(NetBoxModelForm):
+    comments = CommentField()
     class Meta:
         model = Fornecedor
         fields = ('nome_fornecedor', 'email', 'telefone', 'endereco_site')
 
 
 class TipoBobinaForm(NetBoxModelForm):
+    comments = CommentField()
     class Meta:
         model = TipoBobina
         fields = ('descricao',)
