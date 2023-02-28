@@ -37,7 +37,7 @@ class TipoBobina(NetBoxModel):
 
 class Bobina(NetBoxModel):
     # author = models.ForeignKey(User, on_delete=models.PROTECT)
-    nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT)
+    nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT, related_name='bobinas_to_fornecedor')
     quantidade_fibras = models.IntegerField()
     descricao = models.CharField(max_length=60)
     tipo_bobina = models.ForeignKey(to=TipoBobina, on_delete=models.PROTECT, related_name='bobinas')
