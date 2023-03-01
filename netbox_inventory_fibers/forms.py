@@ -17,10 +17,14 @@ class TipoBobinaForm(NetBoxModelForm):
         fields = ('descricao', 'comments')
 
 
-class BobinaForm(NetBoxModelForm):
+class BobinaForm( NetBoxModelForm):
+    # fieldsets = (
+    #     ('Parâmetros da Bobina', ('descricao', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final')),
+    #     ('Status da Bobina', ('descricao')),
+    # )
     class Meta:
         model = Bobina
-        fields = ('descricao', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final')
+        fields = ('modelo', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final')
 
 
 class RequisicaoForm(NetBoxModelForm):
