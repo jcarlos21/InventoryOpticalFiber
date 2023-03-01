@@ -44,8 +44,8 @@ class BobinaTable(NetBoxTable):
     class Meta(NetBoxTable.Meta):
         model = Bobina
         # É preciso adicionar o nome do fornecedor (veja como que faz)
-        fields = ('pk', 'id', 'descricao', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque', 'tags', 'created', 'last_updated')
-        default_columns = ('id', 'descricao', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque')
+        fields = ('pk', 'id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque', 'tags', 'created', 'last_updated')
+        default_columns = ('id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque')
 
 
 class RequisicaoTable(NetBoxTable):
