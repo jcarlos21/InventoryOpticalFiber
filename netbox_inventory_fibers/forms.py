@@ -1,6 +1,6 @@
 from netbox.forms import NetBoxModelForm
 from .models import Fornecedor, TipoBobina, Bobina, Requisicao
-from utilities.forms.fields import CommentField
+from utilities.forms.fields import CommentField, DynamicModelChoiceField
 
 
 class FornecedorForm(NetBoxModelForm):
@@ -17,14 +17,16 @@ class TipoBobinaForm(NetBoxModelForm):
         fields = ('descricao', 'comments')
 
 
-class BobinaForm( NetBoxModelForm):
-    # fieldsets = (
-    #     ('Parâmetros da Bobina', ('descricao', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final')),
-    #     ('Status da Bobina', ('descricao')),
-    # )
+class BobinaForm(TipoBobinaForm, NetBoxModelForm):
+    fieldsets = (
+        ('Parâmetros da Bobina', ('modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags')),
+        # ('Status da Bobina', ('tipo_bobina')),
+    )
     class Meta:
         model = Bobina
-        fields = ('modelo', 'quantidade_fibras', 'lote_cabo', 'metragem_inicial', 'metragem_final')
+        fields = [
+            'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags'
+        ]
 
 
 class RequisicaoForm(NetBoxModelForm):
