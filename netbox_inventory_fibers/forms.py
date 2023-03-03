@@ -1,6 +1,6 @@
 from netbox.forms import NetBoxModelForm
 from .models import Fornecedor, TipoBobina, Bobina, Requisicao
-from utilities.forms.fields import CommentField, ModelMultipleChoiceField, DynamicModelChoiceField
+from utilities.forms.fields import CommentField, DynamicModelChoiceField
 from django import forms
 from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm
 
