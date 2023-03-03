@@ -1,6 +1,8 @@
 from netbox.forms import NetBoxModelForm
 from .models import Fornecedor, TipoBobina, Bobina, Requisicao
-from utilities.forms.fields import CommentField, DynamicModelChoiceField
+from utilities.forms.fields import CommentField, ModelMultipleChoiceField, DynamicModelChoiceField
+from django import forms
+from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm
 
 
 class FornecedorForm(NetBoxModelForm):
@@ -35,3 +37,25 @@ class RequisicaoForm(NetBoxModelForm):
         fields = ('bilhete_associado',)
 
 # Tem que fazer uma classe para 'FibraRequisitada'. Veja em: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step04-forms.md#accesslistruleform
+
+
+
+# FilterSets
+
+# Bobinas:
+
+class BobinaFilterForm(NetBoxModelFilterSetForm):
+    model = Bobina
+
+    quantidade_fibras = forms.ModelMultipleChoiceField(
+        queryset=Bobina.objects.all(),
+        required=False
+    )
+    lote_cabo = forms.ModelMultipleChoiceField(
+        queryset=Bobina.objects.all(),
+        required=False
+    )
+    nome_fornecedor = forms.ModelMultipleChoiceField(
+        queryset=Fornecedor.objects.all(),
+        required=False
+    )

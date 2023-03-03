@@ -82,3 +82,6 @@ class FibraRequisitada(NetBoxModel):
         ordering = ('id',)
     def __str__(self):
         return self.id
+
+
+# Criar model para quantidade fibras no cabo?
