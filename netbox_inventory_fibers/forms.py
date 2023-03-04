@@ -40,7 +40,7 @@ class RequisicaoForm(NetBoxModelForm):
 
 
 
-# FilterSets
+# FormsFilterSets
 
 # Bobinas:
 
