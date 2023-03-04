@@ -35,6 +35,18 @@ class TipoBobina(NetBoxModel):
         return self.descricao
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:tipobobina', args=[self.pk])
+    
+
+# class QuantidadeFibraCabo(NetBoxModel):
+#     quantidade = models.CharField(max_length=5)
+#     comments = models.TextField(blank=True)
+#     class Meta:
+#         ordering = ('id')
+#         verbose_name = 'Quantidade de Fibras no Cabo'
+#     def __str__(self):
+#         return self.quantidade
+#     def get_absolute_url(self):
+#         return reverse('plugins:netbox_inventory_fibers:quantidadefibracabo', args=[self.pk])
 
 
 class Bobina(NetBoxModel):
