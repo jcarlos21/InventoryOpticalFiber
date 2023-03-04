@@ -70,6 +70,8 @@ class RequisicaoView(generic.ObjectView):
 class RequisicaoListView(generic.ObjectListView):
     queryset = models.Requisicao.objects.all()
     table = tables.RequisicaoTable
+    filterset = filtersets.RequisicaoFilterSet
+    filterset_form = forms.RequisicaoFilterForm
 
 class RequisicaoEditView(generic.ObjectEditView):
     queryset = models.Requisicao.objects.all()

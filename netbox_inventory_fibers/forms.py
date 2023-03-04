@@ -68,3 +68,12 @@ class FornecedorFilterForm(NetBoxModelFilterSetForm):
         queryset=Fornecedor.objects.all(),
         required=False
     )
+
+# Requisicao
+
+class RequisicaoFilterForm(NetBoxModelFilterSetForm):
+    model = Requisicao
+    bilhete_associado = forms.ModelMultipleChoiceField(
+        queryset=Requisicao.objects.all(),
+        required=False
+    )

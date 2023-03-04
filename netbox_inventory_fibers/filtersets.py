@@ -20,3 +20,13 @@ class FornecedorFilterSet(NetBoxModelFilterSet):
     
         def search(self, queryset, name, value):
             return queryset.filter(description__icontains=value)
+
+
+class RequisicaoFilterSet(NetBoxModelFilterSet):
+
+    class Meta:
+        model = Requisicao
+        fields = ('id', 'bilhete_associado')
+    
+        def search(self, queryset, name, value):
+            return queryset.filter(description__icontains=value)
