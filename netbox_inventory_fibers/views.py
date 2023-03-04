@@ -11,7 +11,7 @@ class FornecedorView(generic.ObjectView):
 # List view (Exibição de lista)
 class FornecedorListView(generic.ObjectListView):
     queryset = models.Fornecedor.objects.annotate(
-        bobina_fornecedor_count=Count('bobinas_to_fornecedor')
+        bobinas_associadas=Count('bobinas_to_fornecedor')
     )
     table = tables.FornecedorTable
     filterset = filtersets.FornecedorFilterSet
@@ -33,7 +33,7 @@ class TipoBobinaView(generic.ObjectView):
 
 class TipoBobinaListView(generic.ObjectListView):
     queryset = models.TipoBobina.objects.annotate(
-        bobina_count=Count('bobinas')  # deve ser igual ao que aparece na model 'Bobina', em "related_name='bobinas'"
+        bobinas_associadas=Count('bobinas')  # deve ser igual ao que aparece na model 'Bobina', em "related_name='bobinas'"
     )
     table = tables.TipoBobinaTable
 

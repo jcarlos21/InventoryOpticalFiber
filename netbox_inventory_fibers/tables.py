@@ -13,12 +13,12 @@ class FornecedorTable(NetBoxTable):
     #     url_params={'group_id': 'pk'},
     #     verbose_name='Bobinas'
     # )
-    bobina_fornecedor_count = tables.Column()
+    bobinas_associadas = tables.Column()  # Contador de bobinas associadas
     class Meta(NetBoxTable.Meta):
         model = Fornecedor
         # 225343 o 'fields' torna as opções disponíveis em 'configure table'
-        fields = ('pk', 'id', 'nome_fornecedor', 'email', 'telefone', 'endereco_site', 'bobina_fornecedor_count', 'comments', 'tags', 'created', 'last_updated')
-        default_columns = ('pk', 'nome_fornecedor', 'telefone', 'endereco_site', 'bobina_fornecedor_count')
+        fields = ('pk', 'id', 'nome_fornecedor', 'email', 'telefone', 'endereco_site', 'bobinas_associadas', 'comments', 'tags', 'created', 'last_updated')
+        default_columns = ('pk', 'nome_fornecedor', 'telefone', 'endereco_site', 'bobinas_associadas')
 
 
 class TipoBobinaTable(NetBoxTable):
@@ -30,11 +30,11 @@ class TipoBobinaTable(NetBoxTable):
     #     url_params={'group_id': 'pk'},
     #     verbose_name='Bobinas'
     # )
-    bobina_count = tables.Column()
+    bobinas_associadas = tables.Column()
     class Meta(NetBoxTable.Meta):
         model = TipoBobina
-        fields = ('pk', 'id', 'descricao', 'bobina_count', 'comments', 'tags', 'created', 'last_updated')
-        default_columns = ('pk', 'descricao', 'bobina_count')
+        fields = ('pk', 'id', 'descricao', 'bobinas_associadas', 'comments', 'tags', 'created', 'last_updated')
+        default_columns = ('pk', 'descricao', 'bobinas_associadas')
 
 
 class BobinaTable(NetBoxTable):
