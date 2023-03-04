@@ -84,4 +84,4 @@ class FibraRequisitada(NetBoxModel):
         return self.id
 
 
-# Criar model para quantidade fibras no cabo?
+# Criar model para quantidade fibras no cabo? SIMMMMMMMMMMMMMMMMMMMM
