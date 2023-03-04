@@ -62,7 +62,7 @@ class BobinaFilterForm(NetBoxModelFilterSetForm):
 
 # Fornecedor
 
-class FornecedorForm(NetBoxModelFilterSetForm):
+class FornecedorFilterForm(NetBoxModelFilterSetForm):
     model = Fornecedor
     nome_fornecedor = forms.ModelMultipleChoiceField(
         queryset=Fornecedor.objects.all(),

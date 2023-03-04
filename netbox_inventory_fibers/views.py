@@ -14,6 +14,8 @@ class FornecedorListView(generic.ObjectListView):
         bobina_fornecedor_count=Count('bobinas_to_fornecedor')
     )
     table = tables.FornecedorTable
+    filterset = filtersets.FornecedorFilterSet
+    filterset_form = forms.FornecedorFilterForm
 
 # Edit view (Exibição de edição)
 class FornecedorEditView(generic.ObjectEditView):
