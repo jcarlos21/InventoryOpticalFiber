@@ -41,7 +41,7 @@ class QuantidadeFibraCabo(NetBoxModel):
     quantidade = models.CharField(max_length=5)
     comments = models.TextField(blank=True)
     class Meta:
-        ordering = ('id')
+        ordering = ('id',)
         verbose_name = 'Quantidade de Fibras no Cabo'
     def __str__(self):
         return self.quantidade
