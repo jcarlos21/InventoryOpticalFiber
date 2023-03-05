@@ -42,7 +42,7 @@ class QuantidadeFibraCabo(NetBoxModel):
     comments = models.TextField(blank=True)
     class Meta:
         ordering = ('id',)
-        verbose_name = 'Quantidade de Fibras no Cabo'
+        verbose_name = 'Quantidade de Fibra'
     def __str__(self):
         return self.quantidade
     def get_absolute_url(self):
