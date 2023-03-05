@@ -27,7 +27,6 @@ urlpatterns = (
     # path('tipo-bobina/<int:pk>/', include(get_model_urls('tipobobina', 'tipobobina'))),
 
     # QuantidadeFibraCabo
-
     path('quantidade-fibra-cabo/', views.QuantidadeFibraCaboListView.as_view(), name='quantidadefibracabo_list'),
     path('quantidade-fibra-cabo/add/', views.QuantidadeFibraCaboEditView.as_view(), name='quantidadefibracabo_add'),
     path('quantidade-fibra-cabo/<int:pk>/', views.QuantidadeFibraCaboView.as_view(), name='quantidadefibracabo'),

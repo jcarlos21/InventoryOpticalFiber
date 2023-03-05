@@ -17,7 +17,8 @@ class Fornecedor(NetBoxModel):
     comments = models.TextField(blank=True)
     class Meta:
         ordering = ('nome_fornecedor',)
-        verbose_name = 'Fornecedor'
+        # verbose_name = 'Fornecedor'
+        verbose_name_plural = 'Fornecedores'
     def __str__(self):
         return self.nome_fornecedor
     def get_absolute_url(self):
@@ -38,7 +39,7 @@ class TipoBobina(NetBoxModel):
     
 
 class QuantidadeFibraCabo(NetBoxModel):
-    quantidade = models.CharField(max_length=5)
+    quantidade = models.CharField(max_length=5, help_text='Entre com a quantidade de fibras no cabo. Ex.: 36FO')
     comments = models.TextField(blank=True)
     class Meta:
         ordering = ('id',)
@@ -63,7 +64,7 @@ class Bobina(NetBoxModel):
     total_estoque = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
     class Meta:
         ordering = ('id',)
-        verbose_name = 'Bobina'
+        verbose_name_plural = 'Bobinas'
     def __str__(self):
         return self.id
     def restante(self):
@@ -78,7 +79,7 @@ class Requisicao(NetBoxModel):
     bilhete_associado = models.CharField(max_length=15)
     class Meta:
         ordering = ('id',)
-        verbose_name = 'Requisições'
+        verbose_name_plural = 'Requisições'
     def __str__(self):
         return self.id
     def get_absolute_url(self):
