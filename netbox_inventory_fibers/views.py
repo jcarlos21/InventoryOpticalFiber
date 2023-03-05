@@ -50,7 +50,9 @@ class QuantidadeFibraCaboView(generic.ObjectView):
     queryset = models.QuantidadeFibraCabo.objects.all()
 
 class QuantidadeFibraCaboListView(generic.ObjectListView):
-    queryset = models.QuantidadeFibraCabo.objects.all()
+    queryset = models.QuantidadeFibraCabo.objects.annotate(
+        bobinas_associadas=Count('bobinas_to_quantidade')
+    )
     table = tables.QuantidadeFibraCaboTable
 
 class QuantidadeFibraCaboEditView(generic.ObjectEditView):
