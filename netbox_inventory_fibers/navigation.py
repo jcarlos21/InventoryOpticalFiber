@@ -46,19 +46,9 @@ requisicao_buttons = [
 
 menu_items = (
     PluginMenuItem(
-        link='plugins:netbox_inventory_fibers:fornecedor_list',
-        link_text='Fornecedores',
-        buttons=fornecedor_buttons
-    ),
-    PluginMenuItem(
-        link='plugins:netbox_inventory_fibers:tipobobina_list',
-        link_text='Status da Bobina',
-        buttons=tipobobina_buttons
-    ),
-    PluginMenuItem(
-        link='plugins:netbox_inventory_fibers:quantidadefibracabo_list',
-        link_text='Quantidade de Fibras',
-        buttons=quantidadefibracabo_buttons
+        link='plugins:netbox_inventory_fibers:requisicao_list',
+        link_text='Requisições',
+        buttons=requisicao_buttons
     ),
     PluginMenuItem(
         link='plugins:netbox_inventory_fibers:bobina_list',
@@ -66,9 +56,19 @@ menu_items = (
         buttons=bobina_buttons
     ),
     PluginMenuItem(
-        link='plugins:netbox_inventory_fibers:requisicao_list',
-        link_text='Requisições',
-        buttons=requisicao_buttons
+        link='plugins:netbox_inventory_fibers:fornecedor_list',
+        link_text='Fornecedores',
+        buttons=fornecedor_buttons
+    ),
+    PluginMenuItem(
+        link='plugins:netbox_inventory_fibers:quantidadefibracabo_list',
+        link_text='Quantidade de Fibras',
+        buttons=quantidadefibracabo_buttons
+    ),
+    PluginMenuItem(
+        link='plugins:netbox_inventory_fibers:tipobobina_list',
+        link_text='Status da Bobina',
+        buttons=tipobobina_buttons
     ),
 )
 
