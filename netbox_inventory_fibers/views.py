@@ -44,6 +44,22 @@ class TipoBobinaEditView(generic.ObjectEditView):
 class TipoBobinaDeleteView(generic.ObjectEditView):
     queryset = models.TipoBobina.objects.all()
 
+# Quantidade de fibras no cabo
+
+class QuantidadeFibraCaboView(generic.ObjectView):
+    queryset = models.QuantidadeFibraCabo.objects.all()
+
+class QuantidadeFibraCaboListView(generic.ObjectListView):
+    queryset = models.QuantidadeFibraCabo.objects.all()
+    table = tables.QuantidadeFibraCaboTable
+
+class QuantidadeFibraCaboEditView(generic.ObjectEditView):
+    queryset = models.QuantidadeFibraCabo.objects.all()
+    form = forms.QuantidadeFibraCaboForm
+
+class QuantidadeFibraCaboDeleteView(generic.ObjectEditView):
+    queryset = models.QuantidadeFibraCabo.objects.all()
+
 # Bobina:
 
 class BobinaView(generic.ObjectView):

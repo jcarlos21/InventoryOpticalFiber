@@ -37,22 +37,23 @@ class TipoBobina(NetBoxModel):
         return reverse('plugins:netbox_inventory_fibers:tipobobina', args=[self.pk])
     
 
-# class QuantidadeFibraCabo(NetBoxModel):
-#     quantidade = models.CharField(max_length=5)
-#     comments = models.TextField(blank=True)
-#     class Meta:
-#         ordering = ('id')
-#         verbose_name = 'Quantidade de Fibras no Cabo'
-#     def __str__(self):
-#         return self.quantidade
-#     def get_absolute_url(self):
-#         return reverse('plugins:netbox_inventory_fibers:quantidadefibracabo', args=[self.pk])
+class QuantidadeFibraCabo(NetBoxModel):
+    quantidade = models.CharField(max_length=5)
+    comments = models.TextField(blank=True)
+    class Meta:
+        ordering = ('id')
+        verbose_name = 'Quantidade de Fibras no Cabo'
+    def __str__(self):
+        return self.quantidade
+    def get_absolute_url(self):
+        return reverse('plugins:netbox_inventory_fibers:quantidadefibracabo', args=[self.pk])
 
 
 class Bobina(NetBoxModel):
     # author = models.ForeignKey(User, on_delete=models.PROTECT)
     nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT, related_name='bobinas_to_fornecedor')
-    quantidade_fibras = models.IntegerField()
+    # quantidade_fibras = models.IntegerField()
+    quantidade_fibras = models.ForeignKey(to=QuantidadeFibraCabo, on_delete=models.PROTECT, related_name='bobinas_to_quantidade')
     modelo = models.CharField(max_length=60)
     tipo_bobina = models.ForeignKey(to=TipoBobina, on_delete=models.PROTECT, related_name='bobinas')
     lote_cabo = models.CharField(max_length=50)

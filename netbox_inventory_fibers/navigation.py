@@ -19,6 +19,14 @@ tipobobina_buttons = [
         color=ButtonColorChoices.GREEN
     )
 ]
+quantidadefibracabo_buttons = [
+    PluginMenuButton(
+        link='plugins:netbox_inventory_fibers:quantidadefibracabo_add',
+        title='Add',
+        icon_class='mdi mdi-plus-thick',
+        color=ButtonColorChoices.GREEN
+    )
+]
 bobina_buttons = [
     PluginMenuButton(
         link='plugins:netbox_inventory_fibers:bobina_add',
@@ -46,6 +54,11 @@ menu_items = (
         link='plugins:netbox_inventory_fibers:tipobobina_list',
         link_text='Status da Bobina',
         buttons=tipobobina_buttons
+    ),
+    PluginMenuItem(
+        link='plugins:netbox_inventory_fibers:quantidadefibracabo_list',
+        link_text='Quantidade de Fibras',
+        buttons=quantidadefibracabo_buttons
     ),
     PluginMenuItem(
         link='plugins:netbox_inventory_fibers:bobina_list',

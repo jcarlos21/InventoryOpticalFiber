@@ -25,6 +25,18 @@ urlpatterns = (
         'model': models.TipoBobina
     }),
     # path('tipo-bobina/<int:pk>/', include(get_model_urls('tipobobina', 'tipobobina'))),
+
+    # QuantidadeFibraCabo
+
+    path('quantidade-fibra-cabo/', views.QuantidadeFibraCaboListView.as_view(), name='quantidadefibracabo_list'),
+    path('quantidade-fibra-cabo/add/', views.QuantidadeFibraCaboEditView.as_view(), name='quantidadefibracabo_add'),
+    path('quantidade-fibra-cabo/<int:pk>/', views.QuantidadeFibraCaboView.as_view(), name='quantidadefibracabo'),
+    path('quantidade-fibra-cabo/<int:pk>/edit/', views.QuantidadeFibraCaboEditView.as_view(), name='quantidadefibracabo_edit'),
+    path('quantidade-fibra-cabo/<int:pk>/delete/', views.QuantidadeFibraCaboDeleteView.as_view(), name='quantidadefibracabo_delete'),
+    path('quantidade-fibra-cabo/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='quantidadefibracabo_changelog', kwargs={
+        'model': models.QuantidadeFibraCabo
+    }),
+
     
     # Bobina
     path('bobina/', views.BobinaListView.as_view(), name='bobina_list'),
