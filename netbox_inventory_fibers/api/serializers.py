@@ -17,7 +17,6 @@ class FornecedorSerializer(NetBoxModelSerializer):
             'endereco_site', 'comments', 'bobinas_associadas',
             'tags', 'custom_fields', 'created', 'last_updated',
         )
-
 class NestedFornecedorSerializer(WritableNestedSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name='plugins-api:netbox_inventory_fibers-api:fornecedor-detail'
@@ -44,8 +43,29 @@ class NestedTipoBobinaSerializer(WritableNestedSerializer):
         view_name='plugins-api:netbox_inventory_fibers-api:tipobobina-detail'
     )
     class Meta:
-        model = Fornecedor
+        model = TipoBobina
         fields = ('id', 'url', 'display', 'descricao')
+
+
+# QuantidadeFibraCabo
+class QuantidadeFibraCaboSerializer(NetBoxModelSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_inventory_fibers-api:quantidadefibracabo-detail'
+    )
+    bobinas_associadas = serializers.IntegerField(read_only=True)
+    class Meta:
+        model = QuantidadeFibraCabo
+        fields = (
+            'id', 'url', 'display', 'quantidade', 'comments', 'bobinas_associadas',
+            'tags', 'custom_fields', 'created', 'last_updated',
+        )
+class NestedQuantidadeFibraCaboSerializer(WritableNestedSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_inventory_fibers-api:quantidadefibracabo-detail'
+    )
+    class Meta:
+        model = QuantidadeFibraCabo
+        fields = ('id', 'url', 'display', 'quantidade')
 
 
 # Bobina
@@ -53,6 +73,9 @@ class BobinaSerializer(NetBoxModelSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name='plugins-api:netbox_inventory_fibers-api:bobina-detail'
     )
+    nome_fornecedor = NestedFornecedorSerializer()
+    quantidade_fibras = NestedQuantidadeFibraCaboSerializer()
+    tipo_bobina = NestedTipoBobinaSerializer()
     class Meta:
         model = Bobina
         fields = (
