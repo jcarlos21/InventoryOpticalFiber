@@ -83,3 +83,6 @@ class BobinaSerializer(NetBoxModelSerializer):
             'tipo_bobina', 'lote_cabo', 'metragem_inicial', 'metragem_final',
             'total_metragem', 'tags', 'custom_fields', 'created', 'last_updated',
         )
+
+
+# Next step: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step09-rest-api.md#create-the-views
