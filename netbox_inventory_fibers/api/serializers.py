@@ -85,5 +85,3 @@ class BobinaSerializer(NetBoxModelSerializer):
         )
 
 # Falta criar para as outras models: Requisicao e FibraRequisitada
-
-# Next step: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step09-rest-api.md#create-the-views
