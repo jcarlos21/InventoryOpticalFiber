@@ -9,7 +9,7 @@ class FornecedorSerializer(NetBoxModelSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name='plugins-api:netbox_inventory_fibers-api:fornecedor-detail'
     )
-    bobinas_associadas = serializers.IntegerField(read_only=True)
+    bobinas_associadas = serializers.IntegerField(read_only=True)  # Contador de bobinas associadas a Fornecedor
     class Meta:
         model = Fornecedor
         fields = (
