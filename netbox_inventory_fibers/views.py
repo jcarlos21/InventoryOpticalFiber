@@ -23,7 +23,7 @@ class FornecedorEditView(generic.ObjectEditView):
     form = forms.FornecedorForm
 
 # Delete view (Exibição de exclusão)
-class FornecedorDeleteView(generic.ObjectEditView):
+class FornecedorDeleteView(generic.ObjectDeleteView):
     queryset = models.Fornecedor.objects.all()
 
 # TipoBobina:
@@ -41,7 +41,7 @@ class TipoBobinaEditView(generic.ObjectEditView):
     queryset = models.TipoBobina.objects.all()
     form = forms.TipoBobinaForm
 
-class TipoBobinaDeleteView(generic.ObjectEditView):
+class TipoBobinaDeleteView(generic.ObjectDeleteView):
     queryset = models.TipoBobina.objects.all()
 
 # Quantidade de fibras no cabo
@@ -59,7 +59,7 @@ class QuantidadeFibraCaboEditView(generic.ObjectEditView):
     queryset = models.QuantidadeFibraCabo.objects.all()
     form = forms.QuantidadeFibraCaboForm
 
-class QuantidadeFibraCaboDeleteView(generic.ObjectEditView):
+class QuantidadeFibraCaboDeleteView(generic.ObjectDeleteView):
     queryset = models.QuantidadeFibraCabo.objects.all()
 
 # Bobina:
@@ -78,7 +78,7 @@ class BobinaEditView(generic.ObjectEditView):
     queryset = models.Bobina.objects.all()
     form = forms.BobinaForm
 
-class BobinaDeleteView(generic.ObjectEditView):
+class BobinaDeleteView(generic.ObjectDeleteView):
     queryset = models.Bobina.objects.all()
 
 # Requisicao:
@@ -95,6 +95,6 @@ class RequisicaoEditView(generic.ObjectEditView):
     queryset = models.Requisicao.objects.all()
     form = forms.RequisicaoForm
 
-class RequisicaoDeleteView(generic.ObjectEditView):
+class RequisicaoDeleteView(generic.ObjectDeleteView):
     queryset = models.Requisicao.objects.all()
 

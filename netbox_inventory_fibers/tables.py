@@ -55,17 +55,20 @@ class RequisicaoTable(NetBoxTable):
     class Meta(NetBoxTable.Meta):
         model = Requisicao
         fields = ('pk', 'id', 'bilhete_associado', 'tags', 'created', 'last_updated')
-        default_columns = ('id', 'bilhete_associado')
+        default_columns = ('pk', 'bilhete_associado')
 
 class QuantidadeFibraCaboTable(NetBoxTable):
     id = tables.Column(
+        linkify=True
+    )
+    quantidade = tables.Column(
         linkify=True
     )
     bobinas_associadas = tables.Column()  # Contador de bobinas associadas
     class Meta(NetBoxTable.Meta):
         model = QuantidadeFibraCabo
         fields = ('pk', 'id', 'quantidade', 'bobinas_associadas', 'tags', 'created', 'last_updated')
-        default_columns = ('id', 'quantidade', 'bobinas_associadas')
+        default_columns = ('pk', 'quantidade', 'bobinas_associadas')
 
 
 # Tem que fazer uma classe para 'FibraRequisitada'. Veja se dá para aproveitar algo em: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step04-forms.md#accesslistruleform
