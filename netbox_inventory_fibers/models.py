@@ -91,7 +91,7 @@ class FibraRequisitada(NetBoxModel):
     metragem_requisitada = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
     # file will be uploaded to MEDIA_ROOT/uploads
     imagem_corte_cabo = models.FileField(upload_to='uploads/')
-    ordem_de_servico = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT)  # related_name='fibrarequisitada_to_ordem_servico'
+    ordem_de_servico = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT, related_name='fibrarequisitada_to_ordem_servico')  # related_name='fibrarequisitada_to_ordem_servico'
     class Meta:
         ordering = ('id',)
     def __str__(self):
