@@ -36,11 +36,7 @@ class BobinaForm(TipoBobinaForm, QuantidadeFibraCaboForm, NetBoxModelForm):
 class RequisicaoForm(NetBoxModelForm):
     class Meta:
         model = Requisicao
-        fields = ('bilhete_associado',)
-
-
-
-
+        fields = ('ordem_de_servico',)
 
 
 # Tem que fazer uma classe para 'FibraRequisitada'. Veja em: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step04-forms.md#accesslistruleform
@@ -80,7 +76,7 @@ class FornecedorFilterForm(NetBoxModelFilterSetForm):
 
 class RequisicaoFilterForm(NetBoxModelFilterSetForm):
     model = Requisicao
-    bilhete_associado = forms.ModelMultipleChoiceField(
+    ordem_de_servico = forms.ModelMultipleChoiceField(
         queryset=Requisicao.objects.all(),
         required=False
     )

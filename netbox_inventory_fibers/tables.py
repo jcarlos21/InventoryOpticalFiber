@@ -43,7 +43,6 @@ class BobinaTable(NetBoxTable):
     )
     class Meta(NetBoxTable.Meta):
         model = Bobina
-        # É preciso adicionar o nome do fornecedor (veja como que faz)
         fields = ('pk', 'id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque', 'tags', 'created', 'last_updated')
         default_columns = ('id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque')
 
@@ -54,8 +53,9 @@ class RequisicaoTable(NetBoxTable):
     )
     class Meta(NetBoxTable.Meta):
         model = Requisicao
-        fields = ('pk', 'id', 'bilhete_associado', 'tags', 'created', 'last_updated')
-        default_columns = ('pk', 'bilhete_associado')
+        fields = ('pk', 'id', 'ordem_de_servico', 'tags', 'created', 'last_updated')
+        default_columns = ('pk', 'ordem_de_servico')
+
 
 class QuantidadeFibraCaboTable(NetBoxTable):
     id = tables.Column(

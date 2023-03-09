@@ -26,7 +26,7 @@ class RequisicaoFilterSet(NetBoxModelFilterSet):
 
     class Meta:
         model = Requisicao
-        fields = ('id', 'bilhete_associado')
+        fields = ('id', 'ordem_de_servico')
     
         def search(self, queryset, name, value):
             return queryset.filter(description__icontains=value)
