@@ -1,6 +1,6 @@
 from netbox.api.viewsets import NetBoxModelViewSet
 from .. import filtersets, models
-from .serializers import FornecedorSerializer, TipoBobinaSerializer, QuantidadeFibraCaboSerializer, BobinaSerializer
+from .serializers import FornecedorSerializer, TipoBobinaSerializer, QuantidadeFibraCaboSerializer, BobinaSerializer, RequisicaoSerializer
 from django.db.models import Count
 
 
@@ -30,3 +30,10 @@ class BobinaViewSet(NetBoxModelViewSet):
     )
     serializer_class = BobinaSerializer
     filterset_class = filtersets.BobinaFilterSet
+
+
+class RequisicaoViewSet(NetBoxModelViewSet):
+    queryset = models.Requisicao.objects.prefetch_related('tags') # .annotate(bobinas_associadas=Count('fibrarequisitada_to_ordem_servico'))
+    serializer_class = RequisicaoSerializer
+    filterset_class = filtersets.RequisicaoFilterSet
+

@@ -84,4 +84,27 @@ class BobinaSerializer(NetBoxModelSerializer):
             'total_metragem', 'tags', 'custom_fields', 'created', 'last_updated',
         )
 
+
+# Requisição
+
+class RequisicaoSerializer(NetBoxModelSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_inventory_fibers-api:requisicao-detail'
+    )
+    # bobinas_associadas = serializers.IntegerField(read_only=True)
+    class Meta:
+        model = Requisicao
+        fields = (
+            'id', 'url', 'display', 'ordem_de_servico',
+            'tags', 'custom_fields', 'created', 'last_updated',
+        )
+class NestedRequisicaoSerializer(WritableNestedSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_inventory_fibers-api:requisicao-detail'
+    )
+    class Meta:
+        model = Requisicao
+        fields = ('id', 'url', 'display', 'ordem_de_servico')
+
+
 # Falta criar para as outras models: Requisicao e FibraRequisitada
