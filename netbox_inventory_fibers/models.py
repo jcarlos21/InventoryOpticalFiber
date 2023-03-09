@@ -79,7 +79,7 @@ class Requisicao(NetBoxModel):
     ordem_de_servico = models.CharField(max_length=15)
     class Meta:
         ordering = ('id',)
-        verbose_name_plural = 'Requisições'
+        verbose_name_plural = 'Ordens de Serviço'
     def __str__(self):
         return self.ordem_de_servico
     def get_absolute_url(self):
