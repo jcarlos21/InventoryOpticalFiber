@@ -8,11 +8,6 @@ class FornecedorTable(NetBoxTable):
     nome_fornecedor = tables.Column(
         linkify=True
     )
-    # bobinas_count = columns.LinkedCountColumn(
-    #     viewname='wireless:wirelesslan_list',
-    #     url_params={'group_id': 'pk'},
-    #     verbose_name='Bobinas'
-    # )
     bobinas_associadas = tables.Column()  # Contador de bobinas associadas
     class Meta(NetBoxTable.Meta):
         model = Fornecedor
@@ -25,11 +20,6 @@ class TipoBobinaTable(NetBoxTable):
     descricao = tables.Column(
         linkify=True
     )
-    # bobinas_count = columns.LinkedCountColumn(
-    #     viewname='wireless:wirelesslan_list',
-    #     url_params={'group_id': 'pk'},
-    #     verbose_name='Bobinas'
-    # )
     bobinas_associadas = tables.Column()
     class Meta(NetBoxTable.Meta):
         model = TipoBobina
@@ -38,13 +28,13 @@ class TipoBobinaTable(NetBoxTable):
 
 
 class BobinaTable(NetBoxTable):
-    id = tables.Column(
+    modelo = tables.Column(
         linkify=True
     )
     class Meta(NetBoxTable.Meta):
         model = Bobina
-        fields = ('pk', 'id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque', 'tags', 'created', 'last_updated')
-        default_columns = ('id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque')
+        fields = ('pk', 'id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque', 'restante', 'tags', 'created', 'last_updated')
+        default_columns = ('id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque', 'restante')
 
 
 class RequisicaoTable(NetBoxTable):
@@ -69,6 +59,9 @@ class QuantidadeFibraCaboTable(NetBoxTable):
         model = QuantidadeFibraCabo
         fields = ('pk', 'id', 'quantidade', 'bobinas_associadas', 'tags', 'created', 'last_updated')
         default_columns = ('pk', 'quantidade', 'bobinas_associadas')
+
+
+# class FibraRequisitada(NetBoxTable):
 
 
 # Tem que fazer uma classe para 'FibraRequisitada'. Veja se dá para aproveitar algo em: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step04-forms.md#accesslistruleform
