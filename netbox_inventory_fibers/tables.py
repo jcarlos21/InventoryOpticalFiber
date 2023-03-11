@@ -48,7 +48,7 @@ class BobinaTable(NetBoxTable):
 
 
 class RequisicaoTable(NetBoxTable):
-    id = tables.Column(
+    ordem_de_servico = tables.Column(
         linkify=True
     )
     class Meta(NetBoxTable.Meta):
