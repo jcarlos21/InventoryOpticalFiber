@@ -71,8 +71,8 @@ class Bobina(NetBoxModel):
     @property
     def restante(self):
         self.total_metragem = self.metragem_final - self.metragem_inicial
-        self.total_estoque = self.total_metragem
-        return self.total_estoque
+        # self.total_estoque = self.total_metragem
+        return self.total_metragem
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:bobina', args=[self.pk])
 

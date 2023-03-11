@@ -47,7 +47,7 @@ requisicao_buttons = [
 menu_items = (
     PluginMenuItem(
         link='plugins:netbox_inventory_fibers:requisicao_list',
-        link_text='Requisições',
+        link_text='Ordem de Serviço',
         buttons=requisicao_buttons
     ),
     PluginMenuItem(

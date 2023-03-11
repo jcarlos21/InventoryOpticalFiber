@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='bobina',
             name='total_estoque',
-            field=models.FloatField(default=models.FloatField(default=0)),
+            field=models.FloatField(default=0),
         ),
     ]
