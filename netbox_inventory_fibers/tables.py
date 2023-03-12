@@ -31,10 +31,13 @@ class BobinaTable(NetBoxTable):
     modelo = tables.Column(
         linkify=True
     )
+    total_estoque = tables.Column(verbose_name = 'Restante (m)')
+    quantidade_fibras = tables.Column(verbose_name= 'Cabo')
+    nome_fornecedor = tables.Column(verbose_name = 'Fornecedor')
     class Meta(NetBoxTable.Meta):
         model = Bobina
-        fields = ('pk', 'id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque', 'restante', 'tags', 'created', 'last_updated')
-        default_columns = ('id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'total_metragem', 'total_estoque', 'restante')
+        fields = ('pk', 'id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'metragem_cadastrada', 'total_estoque', 'tags', 'created', 'last_updated')
+        default_columns = ('id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'metragem_cadastrada', 'total_estoque')
 
 
 class RequisicaoTable(NetBoxTable):

@@ -60,7 +60,7 @@ class Bobina(NetBoxModel):
     lote_cabo = models.CharField(max_length=50)
     metragem_inicial = models.FloatField(default=0)
     metragem_final = models.FloatField(default=0)
-    total_metragem = models.FloatField(default=0)
+    metragem_cadastrada = models.FloatField(default=0)
     total_estoque = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
     
     class Meta:
@@ -68,17 +68,17 @@ class Bobina(NetBoxModel):
         verbose_name_plural = 'Bobinas'
     def __str__(self):
         return self.modelo
-    @property
-    def restante(self):
+    def get_computed(self):
         self.total_metragem = self.metragem_final - self.metragem_inicial
-        # self.total_estoque = self.total_metragem
         return self.total_metragem
+    def save(self, *args, **kwargs):
+        self.total_estoque = self.get_computed()
+        super(Bobina, self).save(*args, **kwargs)
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:bobina', args=[self.pk])
 
 
 class Requisicao(NetBoxModel):
-    # author = models.ForeignKey(User, on_delete=models.PROTECT)
     ordem_de_servico = models.CharField(max_length=15)
     class Meta:
         ordering = ('id',)
