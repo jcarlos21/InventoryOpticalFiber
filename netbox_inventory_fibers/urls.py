@@ -56,4 +56,6 @@ urlpatterns = (
     path('requisicao/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='requisicao_changelog', kwargs={
         'model': models.Requisicao
     }),
+
+    
 )

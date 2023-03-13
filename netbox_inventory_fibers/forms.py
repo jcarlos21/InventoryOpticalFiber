@@ -1,5 +1,5 @@
 from netbox.forms import NetBoxModelForm
-from .models import Fornecedor, TipoBobina, Bobina, Requisicao, QuantidadeFibraCabo
+from .models import Fornecedor, TipoBobina, Bobina, Requisicao, QuantidadeFibraCabo, FibraRequisitada
 from utilities.forms.fields import CommentField, DynamicModelChoiceField
 from django import forms
 from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm
@@ -23,6 +23,9 @@ class QuantidadeFibraCaboForm(NetBoxModelForm):
         fields = ('quantidade', 'comments')
 
 class BobinaForm(TipoBobinaForm, QuantidadeFibraCaboForm, NetBoxModelForm):
+    nome_fornecedor = DynamicModelChoiceField(
+        queryset=Fornecedor.objects.all()
+    )
     fieldsets = (
         ('Parâmetros da Bobina', ('modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags')),
         # ('Status da Bobina', ('tipo_bobina')),
@@ -41,6 +44,11 @@ class RequisicaoForm(NetBoxModelForm):
 
 # Tem que fazer uma classe para 'FibraRequisitada'. Veja em: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step04-forms.md#accesslistruleform
 
+
+class FibraRequisitadaForm(NetBoxModelForm):
+    class Meta:
+        model = FibraRequisitada
+        fields = ('bobina', 'metragem_requisitada', 'ordem_de_servico')
 
 
 # FormsFilterSets

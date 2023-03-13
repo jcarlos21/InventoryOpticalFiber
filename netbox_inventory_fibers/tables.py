@@ -65,7 +65,13 @@ class QuantidadeFibraCaboTable(NetBoxTable):
         default_columns = ('pk', 'quantidade', 'bobinas_associadas')
 
 
-# class FibraRequisitada(NetBoxTable):
+class FibraRequisitada(NetBoxTable):
+    id = tables.Column(linkify=True)
+    bobina = tables.Column(linkify=True)
+    class Meta(NetBoxTable.Meta):
+        model = FibraRequisitada
+        fields = ('pk', 'id', 'bobina', 'metragem_requisitada', 'ordem_de_servico')
+        default_columns = ('pk', 'id', 'bobina', 'metragem_requisitada', 'ordem_de_servico')
 
 
 # Tem que fazer uma classe para 'FibraRequisitada'. Veja se dá para aproveitar algo em: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step04-forms.md#accesslistruleform
