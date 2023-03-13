@@ -68,14 +68,14 @@ class Bobina(NetBoxModel):
     def get_computed(self):
         self.metragem_cadastrada = self.metragem_final - self.metragem_inicial
         return self.metragem_cadastrada
-    def get_computed2(self):
-        year_now = datetime.datetime.now().date().year
-        if self.tipo_bobina == 'Pedaçeira':
-            novo_dado = f'S0{self.num_auxiliar}_{year_now}'
-            return 'S02_2023'   
+    # def get_computed2(self):
+    #     year_now = datetime.datetime.now().date().year
+    #     if self.tipo_bobina == 'Pedaçeira':
+    #         novo_dado = f'S0{self.num_auxiliar}_{year_now}'
+    #         return novo_dado   
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
-        self.id_privado = self.get_computed2()
+        # self.id_privado = self.get_computed2()
         super(Bobina, self).save(*args, **kwargs)
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:bobina', args=[self.pk])
