@@ -43,12 +43,25 @@ requisicao_buttons = [
         color=ButtonColorChoices.GREEN
     )
 ]
+fibrarequisitada_buttons = [
+    PluginMenuButton(
+        link='plugins:netbox_inventory_fibers:fibrarequisitada_add',
+        title='Add',
+        icon_class='mdi mdi-plus-thick',
+        color=ButtonColorChoices.GREEN
+    )
+]
 
 menu_items = (
     PluginMenuItem(
         link='plugins:netbox_inventory_fibers:requisicao_list',
         link_text='Ordem de Serviço',
         buttons=requisicao_buttons
+    ),
+    PluginMenuItem(
+        link='plugins:netbox_inventory_fibers:fibrarequisitada_list',
+        link_text='Requisições',
+        buttons=fibrarequisitada_buttons
     ),
     PluginMenuItem(
         link='plugins:netbox_inventory_fibers:bobina_list',
