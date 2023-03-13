@@ -65,7 +65,7 @@ class QuantidadeFibraCaboTable(NetBoxTable):
         default_columns = ('pk', 'quantidade', 'bobinas_associadas')
 
 
-class FibraRequisitada(NetBoxTable):
+class FibraRequisitadaTable(NetBoxTable):
     id = tables.Column(linkify=True)
     bobina = tables.Column(linkify=True)
     class Meta(NetBoxTable.Meta):

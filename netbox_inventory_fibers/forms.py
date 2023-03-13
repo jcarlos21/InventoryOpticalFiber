@@ -41,14 +41,10 @@ class RequisicaoForm(NetBoxModelForm):
         model = Requisicao
         fields = ('ordem_de_servico',)
 
-
-# Tem que fazer uma classe para 'FibraRequisitada'. Veja em: https://github.com/netbox-community/netbox-plugin-tutorial/blob/main/tutorial/step04-forms.md#accesslistruleform
-
-
 class FibraRequisitadaForm(NetBoxModelForm):
     class Meta:
         model = FibraRequisitada
-        fields = ('bobina', 'metragem_requisitada', 'ordem_de_servico')
+        fields = ('bobina', 'metragem_requisitada', 'ordem_de_servico', 'imagem_corte_cabo')
 
 
 # FormsFilterSets

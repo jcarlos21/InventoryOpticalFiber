@@ -98,3 +98,18 @@ class RequisicaoEditView(generic.ObjectEditView):
 class RequisicaoDeleteView(generic.ObjectDeleteView):
     queryset = models.Requisicao.objects.all()
 
+# Fibra Requisitada
+
+class FibraRequisitadaView(generic.ObjectView):
+    queryset = models.FibraRequisitada.objects.all()
+
+class FibraRequisitadaListView(generic.ObjectListView):
+    queryset = models.FibraRequisitada.objects.all()
+    table = tables.FibraRequisitadaTable
+
+class FibraRequisitadaEditView(generic.ObjectEditView):
+    queryset = models.FibraRequisitada.objects.all()
+    form = forms.FibraRequisitadaForm
+
+class FibraRequisitadaDeleteView(generic.ObjectDeleteView):
+    queryset = models.FibraRequisitada.objects.all()

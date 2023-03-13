@@ -57,5 +57,14 @@ urlpatterns = (
         'model': models.Requisicao
     }),
 
-    
+    # FibraRequisitada
+    path('fibra-requisitada/', views.FibraRequisitadaListView.as_view(), name='fibrarequisitada_list'),
+    path('fibra-requisitada/add/', views.FibraRequisitadaEditView.as_view(), name='fibrarequisitada_add'),
+    path('fibra-requisitada/<int:pk>/', views.FibraRequisitadaView.as_view(), name='fibrarequisitada'),
+    path('fibra-requisitada/<int:pk>/edit/', views.FibraRequisitadaEditView.as_view(), name='fibrarequisitada_edit'),
+    path('fibra-requisitada/<int:pk>/delete/', views.FibraRequisitadaDeleteView.as_view(), name='fibrarequisitada_delete'),
+    path('fibra-requisitada/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='fibrarequisitada_changelog', kwargs={
+        'model': models.FibraRequisitada
+    }),
+
 )
