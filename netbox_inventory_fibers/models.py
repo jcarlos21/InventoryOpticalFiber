@@ -4,12 +4,10 @@ from netbox.models import NetBoxModel
 
 from django.urls import reverse
 
-# from django.contrib.auth import get_user_model
-# User=get_user_model()
+import datetime
 
 
 class Fornecedor(NetBoxModel):
-    # author = models.ForeignKey(User, on_delete=models.PROTECT)
     nome_fornecedor = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
     telefone = models.PositiveIntegerField()
@@ -26,7 +24,6 @@ class Fornecedor(NetBoxModel):
 
 
 class TipoBobina(NetBoxModel):
-    # author = models.ForeignKey(User, on_delete=models.PROTECT)
     descricao = models.CharField(max_length=20)
     comments = models.TextField(blank=True)
     class Meta:
@@ -51,9 +48,9 @@ class QuantidadeFibraCabo(NetBoxModel):
 
 
 class Bobina(NetBoxModel):
-    # author = models.ForeignKey(User, on_delete=models.PROTECT)
+    # id_privado = models.TextField(default='NA', max_length=50, null=False)
+    # num_auxiliar = models.PositiveIntegerField(default=0)
     nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT, related_name='bobinas_to_fornecedor')
-    # quantidade_fibras = models.IntegerField()
     quantidade_fibras = models.ForeignKey(to=QuantidadeFibraCabo, on_delete=models.PROTECT, related_name='bobinas_to_quantidade')
     modelo = models.CharField(max_length=60)
     tipo_bobina = models.ForeignKey(to=TipoBobina, on_delete=models.PROTECT, related_name='bobinas')
@@ -69,10 +66,16 @@ class Bobina(NetBoxModel):
     def __str__(self):
         return self.modelo
     def get_computed(self):
-        self.total_metragem = self.metragem_final - self.metragem_inicial
-        return self.total_metragem
+        self.metragem_cadastrada = self.metragem_final - self.metragem_inicial
+        return self.metragem_cadastrada
+    def get_computed2(self):
+        year_now = datetime.datetime.now().date().year
+        if self.tipo_bobina == 'Pedaçeira':
+            novo_dado = f'S0{self.num_auxiliar}_{year_now}'
+            return 'S02_2023'   
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
+        self.id_privado = self.get_computed2()
         super(Bobina, self).save(*args, **kwargs)
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:bobina', args=[self.pk])

@@ -81,7 +81,7 @@ class BobinaSerializer(NetBoxModelSerializer):
         fields = (
             'id', 'url', 'display', 'nome_fornecedor', 'quantidade_fibras', 'modelo',
             'tipo_bobina', 'lote_cabo', 'metragem_inicial', 'metragem_final',
-            'total_metragem', 'tags', 'custom_fields', 'created', 'last_updated',
+            'metragem_cadastrada', 'tags', 'custom_fields', 'created', 'last_updated', 'total_estoque',
         )
 
 
