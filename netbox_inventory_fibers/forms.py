@@ -11,6 +11,11 @@ class FornecedorForm(NetBoxModelForm):
     class Meta:
         model = Fornecedor
         fields = ('nome_fornecedor', 'email', 'telefone', 'endereco_site', 'comments')
+        labels = {
+            'nome_fornecedor': _('Nome'),
+            'email': _('E-mail'),
+            'endereco_site': _('Endereço Eletrônico'),
+        }
 
 class TipoBobinaForm(NetBoxModelForm):
     # comments = CommentField()

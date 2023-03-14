@@ -26,7 +26,7 @@ class QuantidadeFibraCaboViewSet(NetBoxModelViewSet):
 
 class BobinaViewSet(NetBoxModelViewSet):
     queryset = models.Bobina.objects.prefetch_related(
-        'nome_fornecedor', 'quantidade_fibras', 'tipo_bobina', 'tags'
+        'nome_fornecedor', 'quantidade_fibras', 'tipo_bobina', 'tags'  # Atributos de outras models
     )
     serializer_class = BobinaSerializer
     filterset_class = filtersets.BobinaFilterSet

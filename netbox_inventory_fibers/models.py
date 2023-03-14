@@ -72,7 +72,7 @@ class Bobina(NetBoxModel):
     #     year_now = datetime.datetime.now().date().year
     #     if self.tipo_bobina == 'Pedaçeira':
     #         novo_dado = f'S0{self.num_auxiliar}_{year_now}'
-    #         return novo_dado   
+    #         return novo_dado 
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
         # self.id_privado = self.get_computed2()
