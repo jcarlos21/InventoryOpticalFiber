@@ -3,19 +3,23 @@ from .models import Fornecedor, TipoBobina, Bobina, Requisicao, QuantidadeFibraC
 from utilities.forms.fields import CommentField, DynamicModelChoiceField
 from django import forms
 from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm
+from django.utils.translation import gettext_lazy as _
 
 
 class FornecedorForm(NetBoxModelForm):
-    comments = CommentField()
+    # comments = CommentField()
     class Meta:
         model = Fornecedor
         fields = ('nome_fornecedor', 'email', 'telefone', 'endereco_site', 'comments')
 
 class TipoBobinaForm(NetBoxModelForm):
-    comments = CommentField()
+    # comments = CommentField()
     class Meta:
         model = TipoBobina
         fields = ('descricao', 'comments')
+        labels = {
+            'descricao': _('Status da Bobina'),
+        }
 
 class QuantidadeFibraCaboForm(NetBoxModelForm):
     class Meta:
@@ -26,10 +30,6 @@ class BobinaForm(TipoBobinaForm, QuantidadeFibraCaboForm, NetBoxModelForm):
     nome_fornecedor = DynamicModelChoiceField(
         queryset=Fornecedor.objects.all()
     )
-    # descricao = DynamicModelChoiceField(
-    #     queryset=TipoBobina.objects.all(),
-    #     required=False
-    # )
     fieldsets = (
         ('Parâmetros da Bobina', ('modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags')),
         # ('Status da Bobina', ('descricao')),

@@ -8,10 +8,10 @@ import datetime
 
 
 class Fornecedor(NetBoxModel):
-    nome_fornecedor = models.CharField(max_length=50)
-    email = models.EmailField(max_length=254)
-    telefone = models.PositiveIntegerField()
-    endereco_site = models.CharField(max_length=60)
+    nome_fornecedor = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(max_length=254, unique=True)
+    telefone = models.PositiveIntegerField(unique=True)
+    endereco_site = models.CharField(max_length=60, unique=True)
     comments = models.TextField(blank=True)
     class Meta:
         ordering = ('nome_fornecedor',)
@@ -24,11 +24,11 @@ class Fornecedor(NetBoxModel):
 
 
 class TipoBobina(NetBoxModel):
-    descricao = models.CharField(max_length=20)
+    descricao = models.CharField(max_length=20, unique=True)
     comments = models.TextField(blank=True)
     class Meta:
         ordering = ('id',)
-        verbose_name = 'Tipos de Bobina'
+        verbose_name = 'Status'
     def __str__(self):
         return self.descricao
     def get_absolute_url(self):
@@ -36,7 +36,7 @@ class TipoBobina(NetBoxModel):
     
 
 class QuantidadeFibraCabo(NetBoxModel):
-    quantidade = models.CharField(max_length=5, help_text='Entre com a quantidade de fibras no cabo. Ex.: 36FO')
+    quantidade = models.CharField(max_length=5, help_text='Entre com a quantidade de fibras no cabo. Ex.: 36FO', unique=True)
     comments = models.TextField(blank=True)
     class Meta:
         ordering = ('id',)
@@ -82,7 +82,8 @@ class Bobina(NetBoxModel):
 
 
 class Requisicao(NetBoxModel):
-    ordem_de_servico = models.CharField(max_length=15)
+    ordem_de_servico = models.CharField(max_length=15, unique=True)
+    # imagem_OS = models.ImageField(upload_to='uploads/', unique=True)
     class Meta:
         ordering = ('id',)
         verbose_name_plural = 'Ordens de Serviço'
@@ -96,7 +97,7 @@ class FibraRequisitada(NetBoxModel):
     bobina = models.ForeignKey(to=Bobina, on_delete=models.PROTECT)
     metragem_requisitada = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
     # file will be uploaded to MEDIA_ROOT/uploads
-    imagem_corte_cabo = models.FileField(upload_to='uploads/')
+    imagem_corte_cabo = models.ImageField(upload_to='uploads/', unique=True)
     ordem_de_servico = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT, related_name='fibrarequisitada_to_ordem_servico')  # related_name='fibrarequisitada_to_ordem_servico'
     class Meta:
         ordering = ('id',)
