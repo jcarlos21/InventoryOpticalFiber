@@ -94,7 +94,7 @@ class Requisicao(NetBoxModel):
 
 
 class FibraRequisitada(NetBoxModel):
-    bobina = models.ForeignKey(to=Bobina, on_delete=models.PROTECT)
+    bobina = models.ForeignKey(to=Bobina, on_delete=models.PROTECT, to_field='id')
     metragem_requisitada = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
     # file will be uploaded to MEDIA_ROOT/uploads
     imagem_corte_cabo = models.ImageField(upload_to='uploads/', unique=True)
