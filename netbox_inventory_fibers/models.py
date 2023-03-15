@@ -83,7 +83,7 @@ class Bobina(NetBoxModel):
 
 class Requisicao(NetBoxModel):
     ordem_de_servico = models.CharField(max_length=15, unique=True)
-    imagem_OS = models.FileField(upload_to='uploads/', unique=True)
+    imagem_OS = models.FileField(upload_to='uploads/OS', unique=True)
     class Meta:
         ordering = ('id',)
         verbose_name_plural = 'Ordens de Serviço'
