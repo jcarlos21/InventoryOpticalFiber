@@ -95,7 +95,7 @@ class RequisicaoSerializer(NetBoxModelSerializer):
     class Meta:
         model = Requisicao
         fields = (
-            'id', 'url', 'display', 'ordem_de_servico',
+            'id', 'url', 'display', 'ordem_de_servico', 'imagem_OS',
             'tags', 'custom_fields', 'created', 'last_updated',
         )
 class NestedRequisicaoSerializer(WritableNestedSerializer):
