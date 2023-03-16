@@ -48,7 +48,7 @@ class QuantidadeFibraCabo(NetBoxModel):
 
 
 class Bobina(NetBoxModel):
-    id_privado = models.CharField(default='0', max_length=50)
+    # id_privado = models.CharField(default='0', max_length=5000)
     # num_auxiliar = models.PositiveIntegerField(default=0)
     nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT, related_name='bobinas_to_fornecedor')
     quantidade_fibras = models.ForeignKey(to=QuantidadeFibraCabo, on_delete=models.PROTECT, related_name='bobinas_to_quantidade')
@@ -71,16 +71,16 @@ class Bobina(NetBoxModel):
         self.metragem_cadastrada = self.metragem_final - self.metragem_inicial
         return self.metragem_cadastrada
     
-    def get_computed2(self):
-        year_now = datetime.datetime.now().date().year
-        if self.tipo_bobina == 'Pedaçeira':
-            return f'S0{self.id}_{year_now}'
-        elif self.tipo_bobina == 'Nova':
-            return f'N0{self.id}_{year_now}'
+    # def get_computed2(self):
+    #     year_now = datetime.datetime.now().date().year
+    #     if self.tipo_bobina == 'Pedaçeira':
+    #         return f'S0{self.id}_{year_now}'
+    #     elif self.tipo_bobina == 'Nova':
+    #         return f'N0{self.id}_{year_now}'
     
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
-        self.id_privado = self.get_computed2()
+        # self.id_privado = self.get_computed2()
         super(Bobina, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -100,8 +100,8 @@ class Requisicao(NetBoxModel):
 
 
 class FibraRequisitada(NetBoxModel):
-    bobina = models.ForeignKey(to=Bobina, on_delete=models.PROTECT, to_field='id')
-    metragem_requisitada = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
+    bobina = models.ForeignKey(to=Bobina, on_delete=models.PROTECT)
+    metragem_requisitada = models.FloatField(default=0)
     # file will be uploaded to MEDIA_ROOT/uploads
     imagem_corte_cabo = models.ImageField(upload_to='uploads/cortes', unique=True)
     ordem_de_servico = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT, related_name='fibrarequisitada_to_ordem_servico')  # related_name='fibrarequisitada_to_ordem_servico'

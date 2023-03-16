@@ -79,7 +79,7 @@ class BobinaSerializer(NetBoxModelSerializer):
     class Meta:
         model = Bobina
         fields = (
-            'id', 'url', 'display', 'id_privado', 'nome_fornecedor', 'quantidade_fibras', 'modelo',
+            'id', 'url', 'display', 'nome_fornecedor', 'quantidade_fibras', 'modelo',
             'tipo_bobina', 'lote_cabo', 'metragem_inicial', 'metragem_final',
             'metragem_cadastrada', 'tags', 'custom_fields', 'created', 'last_updated', 'total_estoque',
         )
@@ -104,7 +104,7 @@ class NestedRequisicaoSerializer(WritableNestedSerializer):
     )
     class Meta:
         model = Requisicao
-        fields = ('id', 'url', 'display', 'ordem_de_servico')
+        fields = ('id', 'url', 'display', 'ordem_de_servico')  # Vai servir para FibraRequisitada
 
 
-# Falta criar para as outras models: Requisicao e FibraRequisitada
+# Falta criar para as outras models: FibraRequisitada

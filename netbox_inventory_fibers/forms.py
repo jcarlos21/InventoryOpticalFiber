@@ -36,13 +36,13 @@ class BobinaForm(TipoBobinaForm, QuantidadeFibraCaboForm, NetBoxModelForm):
         queryset=Fornecedor.objects.all()
     )
     fieldsets = (
-        ('Parâmetros da Bobina', ('modelo', 'quantidade_fibras', 'id_privado', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags')),
+        ('Parâmetros da Bobina', ('modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags')),
         # ('Status da Bobina', ('descricao')),
     )
     class Meta:
         model = Bobina
         fields = [
-            'modelo', 'quantidade_fibras', 'id_privado', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags'
+            'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags'
         ]
 
 class RequisicaoForm(NetBoxModelForm):
