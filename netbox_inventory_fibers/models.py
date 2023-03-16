@@ -48,7 +48,7 @@ class QuantidadeFibraCabo(NetBoxModel):
 
 
 class Bobina(NetBoxModel):
-    # id_privado = models.TextField(default='NA', max_length=50, null=False)
+    id_privado = models.CharField(default='0', max_length=50)
     # num_auxiliar = models.PositiveIntegerField(default=0)
     nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT, related_name='bobinas_to_fornecedor')
     quantidade_fibras = models.ForeignKey(to=QuantidadeFibraCabo, on_delete=models.PROTECT, related_name='bobinas_to_quantidade')
@@ -63,20 +63,26 @@ class Bobina(NetBoxModel):
     class Meta:
         ordering = ('id',)
         verbose_name_plural = 'Bobinas'
+    
     def __str__(self):
         return self.modelo
+    
     def get_computed(self):
         self.metragem_cadastrada = self.metragem_final - self.metragem_inicial
         return self.metragem_cadastrada
-    # def get_computed2(self):
-    #     year_now = datetime.datetime.now().date().year
-    #     if self.tipo_bobina == 'Pedaçeira':
-    #         novo_dado = f'S0{self.num_auxiliar}_{year_now}'
-    #         return novo_dado 
+    
+    def get_computed2(self):
+        year_now = datetime.datetime.now().date().year
+        if self.tipo_bobina == 'Pedaçeira':
+            return f'S0{self.id}_{year_now}'
+        elif self.tipo_bobina == 'Nova':
+            return f'N0{self.id}_{year_now}'
+    
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
-        # self.id_privado = self.get_computed2()
+        self.id_privado = self.get_computed2()
         super(Bobina, self).save(*args, **kwargs)
+
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:bobina', args=[self.pk])
 
