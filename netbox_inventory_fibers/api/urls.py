@@ -9,5 +9,6 @@ router.register('tipo-bobina', views.TipoBobinaViewSet)
 router.register('bobina', views.BobinaViewSet)
 router.register('quantidade-fibra-cabo', views.QuantidadeFibraCaboViewSet)
 router.register('requisicao', views.RequisicaoViewSet)
+router.register('fibra-requisitada', views.FibraRequisitadaViewSet)
 
 urlpatterns = router.urls
