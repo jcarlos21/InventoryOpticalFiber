@@ -83,7 +83,7 @@ class BobinaSerializer(NetBoxModelSerializer):
             'tipo_bobina', 'lote_cabo', 'metragem_inicial', 'metragem_final',
             'metragem_cadastrada', 'tags', 'custom_fields', 'created', 'last_updated', 'total_estoque',
         )
-class NestedobinaSerializer(WritableNestedSerializer):
+class NestedBobinaSerializer(WritableNestedSerializer):
     url = serializers.HyperlinkIdentityField(
         view_name='plugins-api:netbox_inventory_fibers-api:bobina-detail'
     )
@@ -114,6 +114,27 @@ class NestedRequisicaoSerializer(WritableNestedSerializer):
         fields = ('id', 'url', 'display', 'ordem_de_servico')  # Vai servir para FibraRequisitada
 
 
-# Falta criar para as outras models: FibraRequisitada
+# FibraRequisitada
+
+class FibraRequisitadaSerializer(NetBoxModelSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='plugins-api:netbox_inventory_fibers-api:fibrarequisitada-detail'
+    )
+    bobina = NestedBobinaSerializer()
+    ordem_de_servico = NestedRequisicaoSerializer()
+    class Meta:
+        model = FibraRequisitada
+        fields = (
+            'id', 'url', 'display', 'bobina', 'metragem_requisitada',
+            'imagem_corte_cabo', 'ordem_de_servico',
+            'tags', 'custom_fields', 'created', 'last_updated',
+        )
+# class NestedFibraRequisitadaSerializer(WritableNestedSerializer):
+#     url = serializers.HyperlinkedIdentityField(
+#         view_name='plugins-api:netbox_inventory_fibers-api:fibrarequisitada-detail'
+#     )
+#     class Meta:
+#         model = FibraRequisitada
+#         fields = ('id', 'url', 'display', 'ordem_de_servico') 
 
 
