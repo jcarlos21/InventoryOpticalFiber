@@ -70,7 +70,7 @@ class FibraRequisitadaTable(NetBoxTable):
     bobina = tables.Column(linkify=True)
     class Meta(NetBoxTable.Meta):
         model = FibraRequisitada
-        fields = ('pk', 'id', 'bobina', 'metragem_requisitada', 'ordem_de_servico')
+        fields = ('pk', 'id', 'bobina', 'metragem_requisitada', 'ordem_de_servico', 'imagem_corte_cabo')
         default_columns = ('pk', 'id', 'bobina', 'metragem_requisitada', 'ordem_de_servico')
 
 

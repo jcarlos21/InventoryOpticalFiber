@@ -1,0 +1,47 @@
+{% extends 'generic/object.html' %}
+
+{% block content %}
+  <div class="row mb-3">
+    <div class="col col-md-6">
+      <div class="card">
+        <h5 class="card-header">Fibras Requisitadas</h5>
+        <div class="card-body">
+          <table class="table table-hover attr-table">
+            <tr>
+              <th scope="row">ID Requisição</th>
+              <td>{{ object.id }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Modelo da Bobina</th>
+              <td>{{ object.bobina }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Quantidade Solicitada</th>
+              <td>{{ object.metragem_requisitada }} m</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      {% include 'inc/panels/custom_fields.html' %}
+      {% include 'inc/panels/tags.html' %}
+    </div>
+    <!--Detalhes começa aqui-->
+    <div class="col col-md-6">
+        <div class="card">
+          <h5 class="card-header">Detalhes</h5>
+          <div class="card-body">
+            <table class="table table-hover attr-table">
+              <tr>
+                <th scope="row">N° Ordem de Serviço</th>
+                <td>{{ object.ordem_de_servico }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Imagem do Corte</th>
+                <td>{{object.imagem_corte_cabo }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+  </div>
+{% endblock content %}

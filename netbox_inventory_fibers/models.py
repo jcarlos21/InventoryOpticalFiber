@@ -107,8 +107,9 @@ class FibraRequisitada(NetBoxModel):
     ordem_de_servico = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT, related_name='fibrarequisitada_to_ordem_servico')  # related_name='fibrarequisitada_to_ordem_servico'
     class Meta:
         ordering = ('id',)
-    def __str__(self):
-        return self.metragem_requisitada
+        verbose_name_plural = 'Fibras Requisitadas'
+    # def __str__(self):
+    #     return self.ordem_de_servico
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:fibrarequisitada', args=[self.pk])
 

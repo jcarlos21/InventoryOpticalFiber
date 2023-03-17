@@ -84,11 +84,11 @@ class BobinaSerializer(NetBoxModelSerializer):
             'metragem_cadastrada', 'tags', 'custom_fields', 'created', 'last_updated', 'total_estoque',
         )
 class NestedBobinaSerializer(WritableNestedSerializer):
-    url = serializers.HyperlinkIdentityField(
+    url = serializers.HyperlinkedIdentityField(
         view_name='plugins-api:netbox_inventory_fibers-api:bobina-detail'
     )
     class Meta:
-        model: Bobina
+        model = Bobina
         fields = ('id', 'url', 'display', 'modelo')
 
 
