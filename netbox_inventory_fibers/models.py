@@ -100,6 +100,7 @@ class Requisicao(NetBoxModel):
 
 
 class FibraRequisitada(NetBoxModel):
+    id_customizado = models.CharField(default='NA', max_length=50)
     bobina = models.ForeignKey(to=Bobina, on_delete=models.PROTECT)
     metragem_requisitada = models.FloatField(default=0)
     # file will be uploaded to MEDIA_ROOT/uploads
@@ -108,8 +109,17 @@ class FibraRequisitada(NetBoxModel):
     class Meta:
         ordering = ('id',)
         verbose_name_plural = 'Fibras Requisitadas'
-    # def __str__(self):
-    #     return self.ordem_de_servico
+    def __str__(self):
+        return self.id_customizado
+    def get_computed(self):
+        month_now = datetime.datetime.now().date().month
+        print(f'Estou aqui: {self.id}')
+        return f'{self.ordem_de_servico}_id_{self.id}'
+        
+    def save(self, *args, **kwargs):
+        self.id_customizado = self.get_computed()
+        super(FibraRequisitada, self).save(*args, **kwargs)
+
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:fibrarequisitada', args=[self.pk])
 

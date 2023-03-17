@@ -125,7 +125,7 @@ class FibraRequisitadaSerializer(NetBoxModelSerializer):
     class Meta:
         model = FibraRequisitada
         fields = (
-            'id', 'url', 'display', 'bobina', 'metragem_requisitada',
+            'id', 'url', 'display', 'id_customizado', 'bobina', 'metragem_requisitada',
             'imagem_corte_cabo', 'ordem_de_servico',
             'tags', 'custom_fields', 'created', 'last_updated',
         )
