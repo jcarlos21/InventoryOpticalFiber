@@ -83,6 +83,13 @@ class BobinaSerializer(NetBoxModelSerializer):
             'tipo_bobina', 'lote_cabo', 'metragem_inicial', 'metragem_final',
             'metragem_cadastrada', 'tags', 'custom_fields', 'created', 'last_updated', 'total_estoque',
         )
+class NestedobinaSerializer(WritableNestedSerializer):
+    url = serializers.HyperlinkIdentityField(
+        view_name='plugins-api:netbox_inventory_fibers-api:bobina-detail'
+    )
+    class Meta:
+        model: Bobina
+        fields = ('id', 'url', 'display', 'modelo')
 
 
 # Requisição
@@ -108,3 +115,5 @@ class NestedRequisicaoSerializer(WritableNestedSerializer):
 
 
 # Falta criar para as outras models: FibraRequisitada
+
+
