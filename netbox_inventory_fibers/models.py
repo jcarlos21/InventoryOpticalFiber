@@ -113,7 +113,6 @@ class FibraRequisitada(NetBoxModel):
         return self.id_customizado
     def get_computed(self):
         month_now = datetime.datetime.now().date().month
-        print(f'Estou aqui: {self.id}')
         return f'{self.ordem_de_servico}_id_{self.id}'
         
     def save(self, *args, **kwargs):
