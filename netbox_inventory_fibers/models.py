@@ -86,6 +86,14 @@ class Bobina(NetBoxModel):
         self.total_estoque = self.get_computed()
         
         # self.id_privado = self.get_computed2()
+        if not self.special_id:
+           prefix = '{}'.format(datetime.datetime.now().date().year)
+           prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
+           if prev_instances.exists():
+              last_instance_id = prev_instances.last().special_id[-4:]
+              self.special_id = 'B{0:04d}_'.format(int(last_instance_id)+1)+prefix
+           else:
+               self.special_id = 'B{0:04d}_'.format(1)+prefix
         super(Bobina, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
