@@ -76,18 +76,10 @@ class Bobina(NetBoxModel):
         self.total_estoque = self.get_computed()
 
         # datetime.datetime.now().date().year
-
-        # if not self.special_id:
-        #    prefix = 'B{}'.format(timezone.now().strftime('%y%m%d'))
-        #    prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
-        #    if prev_instances.exists():
-        #       last_instance_id = prev_instances.last().special_id[-4:]
-        #       self.special_id = prefix+'_{0:04d}'.format(int(last_instance_id)+1)
-        #    else:
-        #        self.special_id = prefix+'_{0:04d}'.format(1)
         
-        if not self.special_id:
+        if not self.special_id:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
+           prefix = '24'
            prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
            print(f'Estou aqui {prev_instances}')
            if prev_instances.exists():
