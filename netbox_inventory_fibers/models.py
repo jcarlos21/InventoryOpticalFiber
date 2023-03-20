@@ -4,6 +4,8 @@ from netbox.models import NetBoxModel
 
 from django.urls import reverse
 
+from django.utils import timezone
+
 import datetime
 
 
@@ -50,6 +52,8 @@ class QuantidadeFibraCabo(NetBoxModel):
 class Bobina(NetBoxModel):
     # id_privado = models.CharField(default='0', max_length=5000)
     # num_auxiliar = models.PositiveIntegerField(default=0)
+    special_id = models.CharField(max_length=255, null=True, default=None)
+
     nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT, related_name='bobinas_to_fornecedor')
     quantidade_fibras = models.ForeignKey(to=QuantidadeFibraCabo, on_delete=models.PROTECT, related_name='bobinas_to_quantidade')
     modelo = models.CharField(max_length=60)
@@ -80,6 +84,7 @@ class Bobina(NetBoxModel):
     
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
+        
         # self.id_privado = self.get_computed2()
         super(Bobina, self).save(*args, **kwargs)
 
