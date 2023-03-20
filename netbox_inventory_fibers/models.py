@@ -56,8 +56,8 @@ class Bobina(NetBoxModel):
     modelo = models.CharField(max_length=60)
     tipo_bobina = models.ForeignKey(to=TipoBobina, on_delete=models.PROTECT, related_name='bobinas')
     lote_cabo = models.CharField(max_length=50)
-    metragem_inicial = models.FloatField(default=0)
-    metragem_final = models.FloatField(default=0)
+    metragem_inicial = models.FloatField(default=0)  # remover
+    metragem_final = models.FloatField(default=0)  # remover
     metragem_cadastrada = models.FloatField(default=0, editable=False)
     total_estoque = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
     
