@@ -4,6 +4,8 @@ from netbox.models import NetBoxModel
 
 from django.urls import reverse
 
+from django.utils import timezone
+
 import datetime
 
 
@@ -48,7 +50,7 @@ class QuantidadeFibraCabo(NetBoxModel):
 
 
 class Bobina(NetBoxModel):
-    special_id = models.CharField(max_length=255, null=True, default=None)
+    special_id = models.CharField(max_length=255, null=True, default=None, unique=True)
     nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT, related_name='bobinas_to_fornecedor')
     quantidade_fibras = models.ForeignKey(to=QuantidadeFibraCabo, on_delete=models.PROTECT, related_name='bobinas_to_quantidade')
     modelo = models.CharField(max_length=60)
@@ -57,11 +59,14 @@ class Bobina(NetBoxModel):
     metragem_inicial = models.FloatField(default=0)
     metragem_final = models.FloatField(default=0)
     metragem_cadastrada = models.FloatField(default=0)
-    total_estoque = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
+    total_estoque = models.FloatField(default=0, editable=False)  # Foi necessáro colocar o default para a migration ser concluida.
     
     class Meta:
         ordering = ('id',)
         verbose_name_plural = 'Bobinas'
+    
+    def __str__(self):
+        return self.special_id
     
     def get_computed(self):
         self.metragem_cadastrada = self.metragem_final - self.metragem_inicial
@@ -69,20 +74,30 @@ class Bobina(NetBoxModel):
     
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
+
+        # datetime.datetime.now().date().year
+
+        # if not self.special_id:
+        #    prefix = 'B{}'.format(timezone.now().strftime('%y%m%d'))
+        #    prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
+        #    if prev_instances.exists():
+        #       last_instance_id = prev_instances.last().special_id[-4:]
+        #       self.special_id = prefix+'_{0:04d}'.format(int(last_instance_id)+1)
+        #    else:
+        #        self.special_id = prefix+'_{0:04d}'.format(1)
         
         if not self.special_id:
-           prefix = '{}'.format(datetime.datetime.now().date().year)
+           prefix = '{}'.format(timezone.now().strftime('%y'))
            prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
+           print(f'Estou aqui {prev_instances}')
            if prev_instances.exists():
-              last_instance_id = prev_instances.last().special_id[-4:]
+              last_instance_id = prev_instances.last().special_id[1:5]
+              print(last_instance_id)
               self.special_id = 'B{0:04d}_'.format(int(last_instance_id)+1)+prefix
            else:
                self.special_id = 'B{0:04d}_'.format(1)+prefix
         super(Bobina, self).save(*args, **kwargs)
     
-    def __str__(self):
-        return self.special_id
-
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:bobina', args=[self.pk])
 

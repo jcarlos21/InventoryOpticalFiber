@@ -32,9 +32,9 @@ class QuantidadeFibraCaboForm(NetBoxModelForm):
         fields = ('quantidade', 'comments')
 
 class BobinaForm(TipoBobinaForm, QuantidadeFibraCaboForm, NetBoxModelForm):
-    nome_fornecedor = DynamicModelChoiceField(
-        queryset=Fornecedor.objects.all()
-    )
+    # nome_fornecedor = DynamicModelChoiceField(
+    #     queryset=Fornecedor.objects.all()
+    # )
     fieldsets = (
         ('Parâmetros da Bobina', ('modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags')),
         # ('Status da Bobina', ('descricao')),
