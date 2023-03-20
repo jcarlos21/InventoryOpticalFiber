@@ -28,7 +28,7 @@ class TipoBobinaTable(NetBoxTable):
 
 
 class BobinaTable(NetBoxTable):
-    modelo = tables.Column(
+    special_id = tables.Column(
         linkify=True
     )
     total_estoque = tables.Column(verbose_name = 'Disponível')
