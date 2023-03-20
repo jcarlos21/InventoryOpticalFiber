@@ -58,8 +58,8 @@ class Bobina(NetBoxModel):
     lote_cabo = models.CharField(max_length=50)
     metragem_inicial = models.FloatField(default=0)
     metragem_final = models.FloatField(default=0)
-    metragem_cadastrada = models.FloatField(default=0)
-    total_estoque = models.FloatField(default=0, editable=False)  # Foi necessáro colocar o default para a migration ser concluida.
+    metragem_cadastrada = models.FloatField(default=0, editable=False)
+    total_estoque = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
     
     class Meta:
         ordering = ('id',)
@@ -79,7 +79,6 @@ class Bobina(NetBoxModel):
         
         if not self.special_id:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
-           prefix = '24'
            prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
            print(f'Estou aqui {prev_instances}')
            if prev_instances.exists():
