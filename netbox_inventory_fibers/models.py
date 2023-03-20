@@ -69,7 +69,7 @@ class Bobina(NetBoxModel):
         verbose_name_plural = 'Bobinas'
     
     def __str__(self):
-        return self.modelo
+        return self.special_id
     
     def get_computed(self):
         self.metragem_cadastrada = self.metragem_final - self.metragem_inicial
