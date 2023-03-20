@@ -4,8 +4,6 @@ from netbox.models import NetBoxModel
 
 from django.urls import reverse
 
-from django.utils import timezone
-
 import datetime
 
 
@@ -50,10 +48,7 @@ class QuantidadeFibraCabo(NetBoxModel):
 
 
 class Bobina(NetBoxModel):
-    # id_privado = models.CharField(default='0', max_length=5000)
-    # num_auxiliar = models.PositiveIntegerField(default=0)
     special_id = models.CharField(max_length=255, null=True, default=None)
-
     nome_fornecedor = models.ForeignKey(to=Fornecedor, on_delete=models.PROTECT, related_name='bobinas_to_fornecedor')
     quantidade_fibras = models.ForeignKey(to=QuantidadeFibraCabo, on_delete=models.PROTECT, related_name='bobinas_to_quantidade')
     modelo = models.CharField(max_length=60)
@@ -68,24 +63,13 @@ class Bobina(NetBoxModel):
         ordering = ('id',)
         verbose_name_plural = 'Bobinas'
     
-    def __str__(self):
-        return self.special_id
-    
     def get_computed(self):
         self.metragem_cadastrada = self.metragem_final - self.metragem_inicial
         return self.metragem_cadastrada
     
-    # def get_computed2(self):
-    #     year_now = datetime.datetime.now().date().year
-    #     if self.tipo_bobina == 'Pedaçeira':
-    #         return f'S0{self.id}_{year_now}'
-    #     elif self.tipo_bobina == 'Nova':
-    #         return f'N0{self.id}_{year_now}'
-    
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
         
-        # self.id_privado = self.get_computed2()
         if not self.special_id:
            prefix = '{}'.format(datetime.datetime.now().date().year)
            prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
@@ -95,6 +79,9 @@ class Bobina(NetBoxModel):
            else:
                self.special_id = 'B{0:04d}_'.format(1)+prefix
         super(Bobina, self).save(*args, **kwargs)
+    
+    def __str__(self):
+        return self.special_id
 
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:bobina', args=[self.pk])
