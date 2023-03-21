@@ -56,10 +56,10 @@ class Bobina(NetBoxModel):
     modelo = models.CharField(max_length=60)
     tipo_bobina = models.ForeignKey(to=TipoBobina, on_delete=models.PROTECT, related_name='bobinas')
     lote_cabo = models.CharField(max_length=50)
-    metragem_inicial = models.FloatField(default=0)  # remover
-    metragem_final = models.FloatField(default=0)  # remover
+    metragem_inicial = models.FloatField(default=0)  # Tornar editable=False
+    metragem_final = models.FloatField(default=0)  # Tornar editable=False
     metragem_cadastrada = models.FloatField(default=0, editable=False)
-    total_estoque = models.FloatField(default=0)  # Foi necessáro colocar o default para a migration ser concluida.
+    total_estoque = models.FloatField(default=0)
     
     class Meta:
         ordering = ('id',)
@@ -117,11 +117,10 @@ class FibraRequisitada(NetBoxModel):
         
     def save(self, *args, **kwargs):
 
-        # Bobina.objects.filter(special_id=self.bobina).update(total_estoque = (Bobina.total_estoque - self.metragem_requisitada))
-        Bobina.objects.filter(special_id=self.bobina).update(total_estoque = self.metragem_requisitada)
-
-        total = Bobina.objects.filter(special_id=self.bobina).values('total_estoque')
-        print(f'Estou aqui: {total}' )
+        ConsultaBobina = Bobina.objects.get(special_id=self.bobina)
+        bobina_total_estoque = ConsultaBobina.total_estoque
+        disponivel = bobina_total_estoque - self.metragem_requisitada
+        Bobina.objects.filter(special_id=self.bobina).update(total_estoque = disponivel)
 
         if not self.id_customizado:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
@@ -136,4 +135,3 @@ class FibraRequisitada(NetBoxModel):
 
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:fibrarequisitada', args=[self.pk])
-
