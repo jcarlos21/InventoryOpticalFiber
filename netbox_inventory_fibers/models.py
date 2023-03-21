@@ -114,19 +114,20 @@ class FibraRequisitada(NetBoxModel):
         verbose_name_plural = 'Fibras Requisitadas'
     def __str__(self):
         return self.id_customizado
-    # def get_computed(self):
-    #     month_now = datetime.datetime.now().date().month
-    #     return f'{self.ordem_de_servico}_id_{self.id}'
         
     def save(self, *args, **kwargs):
-        # self.id_customizado = self.get_computed()
+
+        # Bobina.objects.filter(special_id=self.bobina).update(total_estoque = (Bobina.total_estoque - self.metragem_requisitada))
+        Bobina.objects.filter(special_id=self.bobina).update(total_estoque = self.metragem_requisitada)
+
+        total = Bobina.objects.filter(special_id=self.bobina).values('total_estoque')
+        print(f'Estou aqui: {total}' )
 
         if not self.id_customizado:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
            prev_instances = self.__class__.objects.filter(id_customizado__contains=prefix)
            if prev_instances.exists():
               last_instance_id = prev_instances.last().id_customizado[3:7]
-            #   print(last_instance_id)
               self.id_customizado = 'REQ{0:04d}_'.format(int(last_instance_id)+1)+prefix
            else:
                self.id_customizado = 'REQ{0:04d}_'.format(1)+prefix
