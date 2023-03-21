@@ -74,16 +74,13 @@ class Bobina(NetBoxModel):
     
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
-
-        # datetime.datetime.now().date().year
         
         if not self.special_id:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
            prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
-           print(f'Estou aqui {prev_instances}')
            if prev_instances.exists():
               last_instance_id = prev_instances.last().special_id[1:5]
-              print(last_instance_id)
+            #   print(last_instance_id)
               self.special_id = 'B{0:04d}_'.format(int(last_instance_id)+1)+prefix
            else:
                self.special_id = 'B{0:04d}_'.format(1)+prefix
@@ -106,7 +103,7 @@ class Requisicao(NetBoxModel):
 
 
 class FibraRequisitada(NetBoxModel):
-    id_customizado = models.CharField(default='NA', max_length=50)
+    id_customizado = models.CharField(max_length=255, null=True, default=None, unique=True, editable=False)
     bobina = models.ForeignKey(to=Bobina, on_delete=models.PROTECT)
     metragem_requisitada = models.FloatField(default=0)
     # file will be uploaded to MEDIA_ROOT/uploads
@@ -117,12 +114,23 @@ class FibraRequisitada(NetBoxModel):
         verbose_name_plural = 'Fibras Requisitadas'
     def __str__(self):
         return self.id_customizado
-    def get_computed(self):
-        month_now = datetime.datetime.now().date().month
-        return f'{self.ordem_de_servico}_id_{self.id}'
+    # def get_computed(self):
+    #     month_now = datetime.datetime.now().date().month
+    #     return f'{self.ordem_de_servico}_id_{self.id}'
         
     def save(self, *args, **kwargs):
-        self.id_customizado = self.get_computed()
+        # self.id_customizado = self.get_computed()
+
+        if not self.id_customizado:           
+           prefix = '{}'.format(timezone.now().strftime('%y'))
+           prev_instances = self.__class__.objects.filter(id_customizado__contains=prefix)
+           if prev_instances.exists():
+              last_instance_id = prev_instances.last().id_customizado[3:7]
+            #   print(last_instance_id)
+              self.id_customizado = 'REQ{0:04d}_'.format(int(last_instance_id)+1)+prefix
+           else:
+               self.id_customizado = 'REQ{0:04d}_'.format(1)+prefix
+               
         super(FibraRequisitada, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
