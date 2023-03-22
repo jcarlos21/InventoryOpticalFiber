@@ -80,7 +80,6 @@ class Bobina(NetBoxModel):
            prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
            if prev_instances.exists():
               last_instance_id = prev_instances.last().special_id[1:5]
-            #   print(last_instance_id)
               self.special_id = 'B{0:04d}_'.format(int(last_instance_id)+1)+prefix
            else:
                self.special_id = 'B{0:04d}_'.format(1)+prefix
