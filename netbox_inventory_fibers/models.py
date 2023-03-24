@@ -74,7 +74,7 @@ class Bobina(NetBoxModel):
     
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
-        
+        # ID Customizado
         if not self.special_id:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
            prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
