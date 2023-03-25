@@ -122,8 +122,8 @@ class FibraRequisitada(NetBoxModel):
         # Bobina.objects.filter(special_id=self.bobina).update(total_estoque = disponivel)
 
 
-        self.Bobina.total_estoque -= self.metragem_requisitada
-        self.Bobina.save()
+        self.bobina.total_estoque -= self.metragem_requisitada
+        self.bobina.save()
 
         if not self.id_customizado:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
