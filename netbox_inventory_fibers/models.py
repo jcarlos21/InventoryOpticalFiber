@@ -5,6 +5,8 @@ from netbox.models import NetBoxModel
 from django.urls import reverse
 
 from django.utils import timezone
+from django.contrib import messages
+from django.http.request import HttpRequest
 
 import datetime
 
@@ -114,17 +116,11 @@ class FibraRequisitada(NetBoxModel):
     def __str__(self):
         return self.id_customizado
         
-    def save(self, force_insert=False, force_update=False, *args, **kwargs):
+    def save(self, *args, **kwargs):
 
-        # ConsultaBobina = Bobina.objects.get(special_id=self.bobina)
+        ConsultaBobina = Bobina.objects.get(special_id=self.bobina)
         # bobina_total_estoque = ConsultaBobina.total_estoque
-        # disponivel = bobina_total_estoque - self.metragem_requisitada
-        # Bobina.objects.filter(special_id=self.bobina).update(total_estoque = disponivel)
-
-
-        self.bobina.total_estoque -= self.metragem_requisitada
-        self.bobina.save()
-
+    
         if not self.id_customizado:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
            prev_instances = self.__class__.objects.filter(id_customizado__contains=prefix)
@@ -133,8 +129,21 @@ class FibraRequisitada(NetBoxModel):
               self.id_customizado = 'REQ{0:04d}_'.format(int(last_instance_id)+1)+prefix
            else:
                self.id_customizado = 'REQ{0:04d}_'.format(1)+prefix
+
+        if (ConsultaBobina.total_estoque - self.metragem_requisitada >= 0):
+            disponivel = ConsultaBobina.total_estoque - self.metragem_requisitada
+            if disponivel > 0:
+                Bobina.objects.filter(special_id=self.bobina).update(total_estoque = disponivel)
+                super(FibraRequisitada, self).save(*args, **kwargs)
+
+        # if (self.bobina.total_estoque - self.metragem_requisitada >= 0):
+        #     self.bobina.total_estoque = self.bobina.total_estoque - self.metragem_requisitada
+        #     self.bobina.save()
+        #     super(FibraRequisitada, self).save(force_insert, force_update, *args, **kwargs)
+        # # else:
+        # #     messages.warning(request, 'Valor requisitado excede quantidade disponível.')
                
-        super(FibraRequisitada, self).save(force_insert, force_update, *args, **kwargs)
+        # super(FibraRequisitada, self).save(force_insert, force_update, *args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:fibrarequisitada', args=[self.pk])
