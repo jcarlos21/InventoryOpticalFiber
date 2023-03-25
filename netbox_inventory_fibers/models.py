@@ -5,11 +5,8 @@ from netbox.models import NetBoxModel
 from django.urls import reverse
 
 from django.utils import timezone
-from django.contrib import messages
-from django.http.request import HttpRequest
 
-import datetime
-
+# import datetime
 
 class Fornecedor(NetBoxModel):
     nome_fornecedor = models.CharField(max_length=50, unique=True)
@@ -119,7 +116,6 @@ class FibraRequisitada(NetBoxModel):
     def save(self, *args, **kwargs):
 
         ConsultaBobina = Bobina.objects.get(special_id=self.bobina)
-        # bobina_total_estoque = ConsultaBobina.total_estoque
     
         if not self.id_customizado:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
@@ -135,15 +131,6 @@ class FibraRequisitada(NetBoxModel):
             if disponivel > 0:
                 Bobina.objects.filter(special_id=self.bobina).update(total_estoque = disponivel)
                 super(FibraRequisitada, self).save(*args, **kwargs)
-
-        # if (self.bobina.total_estoque - self.metragem_requisitada >= 0):
-        #     self.bobina.total_estoque = self.bobina.total_estoque - self.metragem_requisitada
-        #     self.bobina.save()
-        #     super(FibraRequisitada, self).save(force_insert, force_update, *args, **kwargs)
-        # # else:
-        # #     messages.warning(request, 'Valor requisitado excede quantidade disponível.')
-               
-        # super(FibraRequisitada, self).save(force_insert, force_update, *args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:fibrarequisitada', args=[self.pk])
