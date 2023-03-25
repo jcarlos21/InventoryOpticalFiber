@@ -114,12 +114,16 @@ class FibraRequisitada(NetBoxModel):
     def __str__(self):
         return self.id_customizado
         
-    def save(self, *args, **kwargs):
+    def save(self, force_insert=False, force_update=False, *args, **kwargs):
 
-        ConsultaBobina = Bobina.objects.get(special_id=self.bobina)
-        bobina_total_estoque = ConsultaBobina.total_estoque
-        disponivel = bobina_total_estoque - self.metragem_requisitada
-        Bobina.objects.filter(special_id=self.bobina).update(total_estoque = disponivel)
+        # ConsultaBobina = Bobina.objects.get(special_id=self.bobina)
+        # bobina_total_estoque = ConsultaBobina.total_estoque
+        # disponivel = bobina_total_estoque - self.metragem_requisitada
+        # Bobina.objects.filter(special_id=self.bobina).update(total_estoque = disponivel)
+
+
+        self.Bobina.total_estoque -= self.metragem_requisitada
+        self.Bobina.save()
 
         if not self.id_customizado:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
@@ -130,7 +134,7 @@ class FibraRequisitada(NetBoxModel):
            else:
                self.id_customizado = 'REQ{0:04d}_'.format(1)+prefix
                
-        super(FibraRequisitada, self).save(*args, **kwargs)
+        super(FibraRequisitada, self).save(force_insert, force_update, *args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:fibrarequisitada', args=[self.pk])
