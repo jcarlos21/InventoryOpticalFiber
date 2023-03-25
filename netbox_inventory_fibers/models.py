@@ -16,7 +16,6 @@ class Fornecedor(NetBoxModel):
     comments = models.TextField(blank=True)
     class Meta:
         ordering = ('nome_fornecedor',)
-        # verbose_name = 'Fornecedor'
         verbose_name_plural = 'Fornecedores'
     def __str__(self):
         return self.nome_fornecedor
@@ -29,7 +28,7 @@ class TipoBobina(NetBoxModel):
     comments = models.TextField(blank=True)
     class Meta:
         ordering = ('id',)
-        verbose_name = 'Status'
+        verbose_name_plural = 'Tipos de Bobina'
     def __str__(self):
         return self.descricao
     def get_absolute_url(self):
@@ -128,7 +127,7 @@ class FibraRequisitada(NetBoxModel):
 
         if (ConsultaBobina.total_estoque - self.metragem_requisitada >= 0):
             disponivel = ConsultaBobina.total_estoque - self.metragem_requisitada
-            if disponivel > 0:
+            if disponivel > 0 and self.metragem_requisitada > 0:
                 Bobina.objects.filter(special_id=self.bobina).update(total_estoque = disponivel)
                 super(FibraRequisitada, self).save(*args, **kwargs)
 

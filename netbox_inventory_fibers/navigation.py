@@ -80,7 +80,7 @@ menu_items = (
     ),
     PluginMenuItem(
         link='plugins:netbox_inventory_fibers:tipobobina_list',
-        link_text='Status da Bobina',
+        link_text='Tipos de Bobina',
         buttons=tipobobina_buttons
     ),
 )
