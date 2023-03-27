@@ -8,6 +8,13 @@ from django.db.models import Count
 class FornecedorView(generic.ObjectView):
     queryset = models.Fornecedor.objects.all()
 
+    def get_extra_context(self, request, instance):
+        table = tables.BobinaTable(instance.bobinas_to_fornecedor.all())
+        table.configure(request)
+        return {
+            'bobinas_table': table
+        }
+
 # List view (Exibição de lista)
 class FornecedorListView(generic.ObjectListView):
     queryset = models.Fornecedor.objects.annotate(
@@ -16,7 +23,7 @@ class FornecedorListView(generic.ObjectListView):
     table = tables.FornecedorTable
     filterset = filtersets.FornecedorFilterSet
     filterset_form = forms.FornecedorFilterForm
-
+    
 # Edit view (Exibição de edição)
 class FornecedorEditView(generic.ObjectEditView):
     queryset = models.Fornecedor.objects.all()
