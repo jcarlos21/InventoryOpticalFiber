@@ -105,7 +105,7 @@ class FibraRequisitada(NetBoxModel):
     metragem_requisitada = models.FloatField(default=0)
     # file will be uploaded to MEDIA_ROOT/uploads
     imagem_corte_cabo = models.ImageField(upload_to='uploads/cortes', unique=True)
-    ordem_de_servico = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT, related_name='fibrarequisitada_to_ordem_servico')  # related_name='fibrarequisitada_to_ordem_servico'
+    ordem_de_servico = models.ForeignKey(to=Requisicao, on_delete=models.PROTECT, related_name='fibrarequisitada_to_ordem_servico')
     class Meta:
         ordering = ('id',)
         verbose_name_plural = 'Fibras Requisitadas'
