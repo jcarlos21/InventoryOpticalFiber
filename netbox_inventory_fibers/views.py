@@ -37,6 +37,12 @@ class FornecedorDeleteView(generic.ObjectDeleteView):
 
 class TipoBobinaView(generic.ObjectView):
     queryset = models.TipoBobina.objects.all()
+    def get_extra_context(self, request, instance):
+        table = tables.BobinaTable(instance.bobinas.all())
+        table.configure(request)
+        return {
+            'tipo_bobinas_table': table
+        }
 
 class TipoBobinaListView(generic.ObjectListView):
     queryset = models.TipoBobina.objects.annotate(
