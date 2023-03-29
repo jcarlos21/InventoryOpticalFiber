@@ -7,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class FornecedorForm(NetBoxModelForm):
-    # comments = CommentField()
     class Meta:
         model = Fornecedor
         fields = ('nome_fornecedor', 'email', 'telefone', 'endereco_site', 'comments')
@@ -18,7 +17,6 @@ class FornecedorForm(NetBoxModelForm):
         }
 
 class TipoBobinaForm(NetBoxModelForm):
-    # comments = CommentField()
     class Meta:
         model = TipoBobina
         fields = ('descricao', 'comments')
@@ -32,12 +30,8 @@ class QuantidadeFibraCaboForm(NetBoxModelForm):
         fields = ('quantidade', 'comments')
 
 class BobinaForm(TipoBobinaForm, QuantidadeFibraCaboForm, NetBoxModelForm):
-    # nome_fornecedor = DynamicModelChoiceField(
-    #     queryset=Fornecedor.objects.all()
-    # )
     fieldsets = (
         ('Parâmetros da Bobina', ('modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags')),
-        # ('Status da Bobina', ('descricao')),
     )
     class Meta:
         model = Bobina

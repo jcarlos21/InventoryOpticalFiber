@@ -8,7 +8,7 @@ class FornecedorTable(NetBoxTable):
     nome_fornecedor = tables.Column(
         linkify=True
     )
-    bobinas_associadas = tables.Column()  # Contador de bobinas associadas
+    bobinas_associadas = tables.Column()
     class Meta(NetBoxTable.Meta):
         model = Fornecedor
         # o 'fields' torna as opções disponíveis em 'configure table'
@@ -62,7 +62,7 @@ class QuantidadeFibraCaboTable(NetBoxTable):
     quantidade = tables.Column(
         linkify=True
     )
-    bobinas_associadas = tables.Column()  # Contador de bobinas associadas
+    bobinas_associadas = tables.Column()
     class Meta(NetBoxTable.Meta):
         model = QuantidadeFibraCabo
         fields = ('pk', 'id', 'quantidade', 'bobinas_associadas', 'tags', 'created', 'last_updated')
