@@ -11,7 +11,7 @@ class FornecedorTable(NetBoxTable):
     bobinas_associadas = tables.Column()  # Contador de bobinas associadas
     class Meta(NetBoxTable.Meta):
         model = Fornecedor
-        # 225343 o 'fields' torna as opções disponíveis em 'configure table'
+        # o 'fields' torna as opções disponíveis em 'configure table'
         fields = ('pk', 'id', 'nome_fornecedor', 'email', 'telefone', 'endereco_site', 'bobinas_associadas', 'comments', 'tags', 'created', 'last_updated')
         default_columns = ('pk', 'nome_fornecedor', 'telefone', 'endereco_site', 'bobinas_associadas')
 
@@ -48,10 +48,11 @@ class RequisicaoTable(NetBoxTable):
     ordem_de_servico = tables.Column(
         linkify=True
     )
+    requisicoes_associadas = tables.Column(verbose_name = 'Requisições Associadas')
     class Meta(NetBoxTable.Meta):
         model = Requisicao
-        fields = ('pk', 'id', 'ordem_de_servico', 'imagem_OS', 'tags', 'created', 'last_updated')
-        default_columns = ('pk', 'id', 'ordem_de_servico', 'created')
+        fields = ('pk', 'id', 'ordem_de_servico', 'requisicoes_associadas', 'imagem_OS', 'tags', 'created', 'last_updated')
+        default_columns = ('pk', 'id', 'ordem_de_servico', 'requisicoes_associadas', 'created')
 
 
 class QuantidadeFibraCaboTable(NetBoxTable):
@@ -72,7 +73,8 @@ class FibraRequisitadaTable(NetBoxTable):
     id = tables.Column(linkify=True)
     bobina = tables.Column(linkify=True)
     id_customizado = tables.Column(verbose_name = 'ID Requisição', linkify=True)
+    metragem_requisitada = tables.Column(verbose_name = 'Metragem Requisitada (m)')
     class Meta(NetBoxTable.Meta):
         model = FibraRequisitada
         fields = ('pk', 'id', 'id_customizado', 'bobina', 'metragem_requisitada', 'ordem_de_servico', 'imagem_corte_cabo')
-        default_columns = ('pk', 'id_customizado', 'metragem_requisitada', 'bobina', 'ordem_de_servico')
+        default_columns = ('pk', 'id_customizado', 'metragem_requisitada', 'bobina', 'ordem_de_servico', 'imagem_corte_cabo')

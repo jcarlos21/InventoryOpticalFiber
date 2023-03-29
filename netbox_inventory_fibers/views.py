@@ -97,9 +97,18 @@ class BobinaDeleteView(generic.ObjectDeleteView):
 # Requisicao:
 class RequisicaoView(generic.ObjectView):
     queryset = models.Requisicao.objects.all()
+    def get_extra_context(self, request, instance):
+        table = tables.FibraRequisitadaTable(instance.fibrarequisitada_to_ordem_servico.all())
+        table.configure(request)
+        return {
+            'fibrarequisitada_table': table
+        }
 
 class RequisicaoListView(generic.ObjectListView):
-    queryset = models.Requisicao.objects.all()
+    # queryset = models.Requisicao.objects.all()
+    queryset = models.Requisicao.objects.annotate(
+        requisicoes_associadas=Count('fibrarequisitada_to_ordem_servico')
+    )
     table = tables.RequisicaoTable
     filterset = filtersets.RequisicaoFilterSet
     filterset_form = forms.RequisicaoFilterForm
