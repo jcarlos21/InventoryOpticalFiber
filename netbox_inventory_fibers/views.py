@@ -61,6 +61,12 @@ class TipoBobinaDeleteView(generic.ObjectDeleteView):
 
 class QuantidadeFibraCaboView(generic.ObjectView):
     queryset = models.QuantidadeFibraCabo.objects.all()
+    def get_extra_context(self, request, instance):
+        table = tables.BobinaTable(instance.bobinas_to_quantidade.all())
+        table.configure(request)
+        return {
+            'quantidadefibracabo_table': table
+        }
 
 class QuantidadeFibraCaboListView(generic.ObjectListView):
     queryset = models.QuantidadeFibraCabo.objects.annotate(
