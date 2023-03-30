@@ -40,12 +40,15 @@ class BobinaForm(TipoBobinaForm, QuantidadeFibraCaboForm, NetBoxModelForm):
         ]
 
 class RequisicaoForm(NetBoxModelForm):
+    fieldsets = (
+        ('Adição de Ordens de Serviço', ('ordem_de_servico', 'imagem_OS')),
+    )
     class Meta:
         model = Requisicao
-        fields = ('ordem_de_servico', 'imagem_OS')
+        fields = ['ordem_de_servico', 'imagem_OS']
         labels = {
             'ordem_de_servico': _('Ordem de Serviço'),
-            'imagem_OS': _('Imagem da OS'),
+            'imagem_OS': _('Arquivo da OS'),
         }
 
 class FibraRequisitadaForm(NetBoxModelForm):

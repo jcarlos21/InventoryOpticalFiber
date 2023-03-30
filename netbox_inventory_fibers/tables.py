@@ -49,6 +49,7 @@ class RequisicaoTable(NetBoxTable):
         linkify=True
     )
     requisicoes_associadas = tables.Column(verbose_name = 'Requisições Associadas')
+    imagem_OS = tables.Column(verbose_name = 'Arquivo da OS')
     class Meta(NetBoxTable.Meta):
         model = Requisicao
         fields = ('pk', 'id', 'ordem_de_servico', 'requisicoes_associadas', 'imagem_OS', 'tags', 'created', 'last_updated')
