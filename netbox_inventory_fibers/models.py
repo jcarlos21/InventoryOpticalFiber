@@ -73,8 +73,8 @@ class Bobina(NetBoxModel):
     
     def save(self, *args, **kwargs):
         self.total_estoque = self.get_computed()
-        if self.reposicao > 0:
-            self.total_estoque = self.reposicao
+        # if self.reposicao > 0:
+        #     self.total_estoque = self.reposicao
         # ID Customizado:
         if not self.special_id:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
