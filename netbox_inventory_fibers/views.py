@@ -111,7 +111,6 @@ class RequisicaoView(generic.ObjectView):
         }
 
 class RequisicaoListView(generic.ObjectListView):
-    # queryset = models.Requisicao.objects.all()
     queryset = models.Requisicao.objects.annotate(
         requisicoes_associadas=Count('fibrarequisitada_to_ordem_servico')
     )
