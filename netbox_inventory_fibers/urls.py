@@ -24,7 +24,6 @@ urlpatterns = (
     path('tipo-bobina/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='tipobobina_changelog', kwargs={
         'model': models.TipoBobina
     }),
-    # path('tipo-bobina/<int:pk>/', include(get_model_urls('tipobobina', 'tipobobina'))),
 
     # QuantidadeFibraCabo
     path('quantidade-fibra-cabo/', views.QuantidadeFibraCaboListView.as_view(), name='quantidadefibracabo_list'),
@@ -36,7 +35,6 @@ urlpatterns = (
         'model': models.QuantidadeFibraCabo
     }),
 
-    
     # Bobina
     path('bobina/', views.BobinaListView.as_view(), name='bobina_list'),
     path('bobina/add/', views.BobinaEditView.as_view(), name='bobina_add'),
@@ -47,7 +45,7 @@ urlpatterns = (
         'model': models.Bobina
     }),
 
-    # Requisicao
+    # Ordem de Serviço
     path('requisicao/', views.RequisicaoListView.as_view(), name='requisicao_list'),
     path('requisicao/add/', views.RequisicaoEditView.as_view(), name='requisicao_add'),
     path('requisicao/<int:pk>/', views.RequisicaoView.as_view(), name='requisicao'),

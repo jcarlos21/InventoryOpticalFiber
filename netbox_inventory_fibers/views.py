@@ -100,7 +100,7 @@ class BobinaEditView(generic.ObjectEditView):
 class BobinaDeleteView(generic.ObjectDeleteView):
     queryset = models.Bobina.objects.all()
 
-# Requisicao:
+# Ordem de Serviço:
 class RequisicaoView(generic.ObjectView):
     queryset = models.Requisicao.objects.all()
     def get_extra_context(self, request, instance):
