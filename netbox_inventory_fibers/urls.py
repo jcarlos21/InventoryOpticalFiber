@@ -64,5 +64,4 @@ urlpatterns = (
     path('fibra-requisitada/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='fibrarequisitada_changelog', kwargs={
         'model': models.FibraRequisitada
     }),
-
 )

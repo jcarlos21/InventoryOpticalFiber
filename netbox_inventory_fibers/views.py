@@ -2,8 +2,8 @@ from netbox.views import generic
 from . import forms, models, tables, filtersets
 from django.db.models import Count
 
-# Fornecedor:
 
+# Fornecedor
 # Detail View (Exibição de detalhes)
 class FornecedorView(generic.ObjectView):
     queryset = models.Fornecedor.objects.all()
@@ -33,8 +33,8 @@ class FornecedorEditView(generic.ObjectEditView):
 class FornecedorDeleteView(generic.ObjectDeleteView):
     queryset = models.Fornecedor.objects.all()
 
-# TipoBobina:
 
+# TipoBobina
 class TipoBobinaView(generic.ObjectView):
     queryset = models.TipoBobina.objects.all()
     def get_extra_context(self, request, instance):
@@ -46,7 +46,7 @@ class TipoBobinaView(generic.ObjectView):
 
 class TipoBobinaListView(generic.ObjectListView):
     queryset = models.TipoBobina.objects.annotate(
-        bobinas_associadas=Count('bobinas')  # deve ser igual ao que aparece na model 'Bobina', em "related_name='bobinas'"
+        bobinas_associadas=Count('bobinas')
     )
     table = tables.TipoBobinaTable
 
@@ -57,8 +57,8 @@ class TipoBobinaEditView(generic.ObjectEditView):
 class TipoBobinaDeleteView(generic.ObjectDeleteView):
     queryset = models.TipoBobina.objects.all()
 
-# Quantidade de fibras no cabo
 
+# Quantidade de fibras no cabo
 class QuantidadeFibraCaboView(generic.ObjectView):
     queryset = models.QuantidadeFibraCabo.objects.all()
     def get_extra_context(self, request, instance):
@@ -81,15 +81,14 @@ class QuantidadeFibraCaboEditView(generic.ObjectEditView):
 class QuantidadeFibraCaboDeleteView(generic.ObjectDeleteView):
     queryset = models.QuantidadeFibraCabo.objects.all()
 
-# Bobina:
 
+# Bobina
 class BobinaView(generic.ObjectView):
     queryset = models.Bobina.objects.all()
 
 class BobinaListView(generic.ObjectListView):
     queryset = models.Bobina.objects.all()
     table = tables.BobinaTable
-    # FilterSets
     filterset = filtersets.BobinaFilterSet
     filterset_form = forms.BobinaFilterForm
 
@@ -100,7 +99,8 @@ class BobinaEditView(generic.ObjectEditView):
 class BobinaDeleteView(generic.ObjectDeleteView):
     queryset = models.Bobina.objects.all()
 
-# Ordem de Serviço:
+
+# Ordem de Serviço
 class RequisicaoView(generic.ObjectView):
     queryset = models.Requisicao.objects.all()
     def get_extra_context(self, request, instance):
@@ -125,8 +125,8 @@ class RequisicaoEditView(generic.ObjectEditView):
 class RequisicaoDeleteView(generic.ObjectDeleteView):
     queryset = models.Requisicao.objects.all()
 
-# Fibra Requisitada
 
+# Fibra Requisitada
 class FibraRequisitadaView(generic.ObjectView):
     queryset = models.FibraRequisitada.objects.all()
 

@@ -60,7 +60,6 @@ class FibraRequisitadaForm(NetBoxModelForm):
 # FormsFilterSets
 
 # Bobinas:
-
 class BobinaFilterForm(NetBoxModelFilterSetForm):
     model = Bobina
 
@@ -78,7 +77,6 @@ class BobinaFilterForm(NetBoxModelFilterSetForm):
     )
 
 # Fornecedor
-
 class FornecedorFilterForm(NetBoxModelFilterSetForm):
     model = Fornecedor
     nome_fornecedor = forms.ModelMultipleChoiceField(
@@ -87,7 +85,6 @@ class FornecedorFilterForm(NetBoxModelFilterSetForm):
     )
 
 # Requisicao
-
 class RequisicaoFilterForm(NetBoxModelFilterSetForm):
     model = Requisicao
     ordem_de_servico = forms.ModelMultipleChoiceField(
