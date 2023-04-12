@@ -80,8 +80,8 @@ class BobinaSerializer(NetBoxModelSerializer):
         model = Bobina
         fields = (
             'id', 'url', 'display', 'special_id', 'nome_fornecedor', 'quantidade_fibras', 'modelo',
-            'tipo_bobina', 'lote_cabo', 'metragem_inicial', 'metragem_final',
-            'metragem_cadastrada', 'tags', 'custom_fields', 'created', 'last_updated', 'total_estoque',
+            'tipo_bobina', 'lote_cabo', 'metragem_cadastrada', 'tags', 'custom_fields',
+            'created', 'last_updated', 'total_estoque', 'comments',
         )
 class NestedBobinaSerializer(WritableNestedSerializer):
     url = serializers.HyperlinkedIdentityField(

@@ -58,8 +58,8 @@ class Bobina(NetBoxModel):
     # metragem_final = models.FloatField(default=0)  # Tornar editable=False
     metragem_cadastrada = models.FloatField(default=0)
     total_estoque = models.FloatField(default=0)
-    comments = models.TextField(blank=False, default='Bobina adicionada')
-    # reposicao = models.FloatField(default=0)  # Colocar condicional no método save() desta classe.
+    comments = models.TextField(blank=True, default='Metragem Inicial:\nMetragem Final:')
+    # reposicao = models.FloatField(default=0, help_text='Caso esta operação não seja uma reposição, deixe o valor zerado.')  # Colocar condicional no método save() desta classe.
     
     class Meta:
         ordering = ('id',)
@@ -76,7 +76,7 @@ class Bobina(NetBoxModel):
         # self.total_estoque = self.get_computed()
         self.total_estoque = self.metragem_cadastrada
         # if self.reposicao > 0:
-        #     self.total_estoque = self.reposicao
+        #     self.total_estoque = self.total_estoque + self.reposicao
         # ID Customizado:
         if not self.special_id:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
