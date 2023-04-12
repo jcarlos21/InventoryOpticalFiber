@@ -54,10 +54,11 @@ class Bobina(NetBoxModel):
     modelo = models.CharField(max_length=60)
     tipo_bobina = models.ForeignKey(to=TipoBobina, on_delete=models.PROTECT, related_name='bobinas')
     lote_cabo = models.CharField(max_length=50)
-    metragem_inicial = models.FloatField(default=0)  # Tornar editable=False
-    metragem_final = models.FloatField(default=0)  # Tornar editable=False
-    metragem_cadastrada = models.FloatField(default=0, editable=False)
+    # metragem_inicial = models.FloatField(default=0)  # Tornar editable=False
+    # metragem_final = models.FloatField(default=0)  # Tornar editable=False
+    metragem_cadastrada = models.FloatField(default=0)
     total_estoque = models.FloatField(default=0)
+    comments = models.TextField(blank=False, default='Bobina adicionada')
     # reposicao = models.FloatField(default=0)  # Colocar condicional no método save() desta classe.
     
     class Meta:
@@ -67,12 +68,13 @@ class Bobina(NetBoxModel):
     def __str__(self):
         return self.special_id
     
-    def get_computed(self):
-        self.metragem_cadastrada = self.metragem_final - self.metragem_inicial
-        return self.metragem_cadastrada
+    # def get_computed(self):
+    #     self.metragem_cadastrada = self.metragem_final - self.metragem_inicial
+    #     return self.metragem_cadastrada
     
     def save(self, *args, **kwargs):
-        self.total_estoque = self.get_computed()
+        # self.total_estoque = self.get_computed()
+        self.total_estoque = self.metragem_cadastrada
         # if self.reposicao > 0:
         #     self.total_estoque = self.reposicao
         # ID Customizado:

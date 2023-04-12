@@ -35,13 +35,13 @@ class BobinaTable(NetBoxTable):
     lote_cabo = tables.Column(verbose_name = 'Lote')
     special_id = tables.Column(linkify=True, verbose_name = 'ID Bobina')
     tipo_bobina = tables.Column(verbose_name = 'Tipo')
-    metragem_inicial = tables.Column(verbose_name = 'Met. Inicial')
-    metragem_final = tables.Column(verbose_name = 'Met. Final')
+    # metragem_inicial = tables.Column(verbose_name = 'Met. Inicial')
+    # metragem_final = tables.Column(verbose_name = 'Met. Final')
     metragem_cadastrada = tables.Column(verbose_name = 'Met. Cadastrada')
     class Meta(NetBoxTable.Meta):
         model = Bobina
-        fields = ('pk', 'id', 'special_id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'tipo_bobina', 'metragem_inicial', 'metragem_final', 'metragem_cadastrada', 'total_estoque', 'tags', 'created', 'last_updated')
-        default_columns = ('special_id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'tipo_bobina', 'metragem_inicial', 'metragem_final', 'metragem_cadastrada', 'total_estoque')
+        fields = ('pk', 'id', 'special_id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'tipo_bobina', 'metragem_cadastrada', 'total_estoque', 'tags', 'created', 'last_updated')
+        default_columns = ('special_id', 'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'tipo_bobina', 'metragem_cadastrada', 'total_estoque')
 
 
 class RequisicaoTable(NetBoxTable):

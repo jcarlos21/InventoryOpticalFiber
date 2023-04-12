@@ -31,12 +31,12 @@ class QuantidadeFibraCaboForm(NetBoxModelForm):
 
 class BobinaForm(TipoBobinaForm, QuantidadeFibraCaboForm, NetBoxModelForm):
     fieldsets = (
-        ('Parâmetros da Bobina', ('modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags')),
+        ('Parâmetros da Bobina', ('modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'tipo_bobina', 'comments', 'tags')),
     )
     class Meta:
         model = Bobina
         fields = [
-            'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'metragem_inicial', 'metragem_final', 'tipo_bobina', 'tags'
+            'modelo', 'quantidade_fibras', 'lote_cabo', 'nome_fornecedor', 'tipo_bobina', 'comments', 'tags'
         ]
 
 class RequisicaoForm(NetBoxModelForm):
