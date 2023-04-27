@@ -6,7 +6,6 @@ from django.urls import reverse
 
 from django.utils import timezone
 
-# import datetime
 
 class Fornecedor(NetBoxModel):
     nome_fornecedor = models.CharField(max_length=50, unique=True)
@@ -54,8 +53,6 @@ class Bobina(NetBoxModel):
     modelo = models.CharField(max_length=60)
     tipo_bobina = models.ForeignKey(to=TipoBobina, on_delete=models.PROTECT, related_name='bobinas')
     lote_cabo = models.CharField(max_length=50)
-    # metragem_inicial = models.FloatField(default=0)  # Tornar editable=False
-    # metragem_final = models.FloatField(default=0)  # Tornar editable=False
     metragem_cadastrada = models.FloatField(default=0)
     total_estoque = models.FloatField(default=0)
     comments = models.TextField(blank=True, default='Metragem Inicial:\nMetragem Final:')
@@ -68,16 +65,8 @@ class Bobina(NetBoxModel):
     def __str__(self):
         return self.special_id
     
-    # def get_computed(self):
-    #     self.metragem_cadastrada = self.metragem_final - self.metragem_inicial
-    #     return self.metragem_cadastrada
-    
     def save(self, *args, **kwargs):
-        # self.total_estoque = self.get_computed()
         self.total_estoque = self.metragem_cadastrada
-        # if self.reposicao > 0:
-        #     self.total_estoque = self.total_estoque + self.reposicao
-        # ID Customizado:
         if not self.special_id:           
            prefix = '{}'.format(timezone.now().strftime('%y'))
            prev_instances = self.__class__.objects.filter(special_id__contains=prefix)
