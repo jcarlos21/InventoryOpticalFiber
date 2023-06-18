@@ -22,14 +22,7 @@ class RequisicaoTestCase(TestCase):
             ordem_de_servico = '2023.02-BR15',
             imagem_OS = '/uploads/Screenshot_from_2023-02-26_21-48-57_LqXGqhw.png'
         )
-
-
-
-
-
-
-
-        
+      
         b1 = Bobina.objects.create(
             nome_fornecedor = f1,
             quantidade_fibras = q1,
