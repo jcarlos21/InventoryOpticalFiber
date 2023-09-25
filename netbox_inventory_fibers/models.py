@@ -122,6 +122,13 @@ class FibraRequisitada(NetBoxModel):
             if disponivel > 0 and self.metragem_requisitada > 0:
                 Bobina.objects.filter(special_id=self.bobina).update(total_estoque = disponivel)
                 super(FibraRequisitada, self).save(*args, **kwargs)
+    
+    def delete(self):
+        
+        ConsultaBobina = Bobina.objects.get(special_id=self.bobina)
+        reposicao = ConsultaBobina.total_estoque + self.metragem_requisitada
+        Bobina.objects.filter(special_id=self.bobina).update(total_estoque = reposicao)        
+        super(FibraRequisitada, self).delete()
 
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:fibrarequisitada', args=[self.pk])
