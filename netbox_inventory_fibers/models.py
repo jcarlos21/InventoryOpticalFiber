@@ -132,3 +132,4 @@ class FibraRequisitada(NetBoxModel):
 
     def get_absolute_url(self):
         return reverse('plugins:netbox_inventory_fibers:fibrarequisitada', args=[self.pk])
+    
