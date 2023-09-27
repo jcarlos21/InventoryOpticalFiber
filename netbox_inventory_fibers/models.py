@@ -124,7 +124,6 @@ class FibraRequisitada(NetBoxModel):
                 super(FibraRequisitada, self).save(*args, **kwargs)
     
     def delete(self):
-        
         ConsultaBobina = Bobina.objects.get(special_id=self.bobina)
         reposicao = ConsultaBobina.total_estoque + self.metragem_requisitada
         Bobina.objects.filter(special_id=self.bobina).update(total_estoque = reposicao)        
