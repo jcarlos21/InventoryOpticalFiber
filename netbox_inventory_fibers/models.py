@@ -79,7 +79,7 @@ class Bobina(NetBoxModel):
         return reverse('plugins:netbox_inventory_fibers:bobina', args=[self.pk])
 
 
-class Requisicao(NetBoxModel):
+class Requisicao(NetBoxModel):  # Trata-se da ordem de serviço
     ordem_de_servico = models.CharField(max_length=15, unique=True)
     imagem_OS = models.FileField(upload_to='uploads/OS', unique=True)
     class Meta:
@@ -91,7 +91,7 @@ class Requisicao(NetBoxModel):
         return reverse('plugins:netbox_inventory_fibers:requisicao', args=[self.pk])
 
 
-class FibraRequisitada(NetBoxModel):
+class FibraRequisitada(NetBoxModel):  # Refere-se a solicitação fibra propriamente dita.
     id_customizado = models.CharField(max_length=255, null=True, default=None, unique=True, editable=False)
     bobina = models.ForeignKey(to=Bobina, on_delete=models.PROTECT)
     metragem_requisitada = models.FloatField(default=0)
